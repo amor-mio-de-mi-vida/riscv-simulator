@@ -1,0 +1,19 @@
+allprojects {
+    ext {
+        appVersion = "2.0.4"  // version of the application
+        appVersionCode = 43   // versionCode of the application for Android
+        javaVersion = 1.7     // Java version to compile with
+    }
+
+    version = "$appVersion"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+task dist {
+    description = "Creates the dist folder"
+    group = "Distribution"
+}
