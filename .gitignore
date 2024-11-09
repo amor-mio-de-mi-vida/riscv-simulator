@@ -1,11 +1,2 @@
-# Files
-.idea/libraries
-.idea/workspace.xml
-local.properties
-
-# Folders
-.gradle/
-.nb-gradle/
-build/
-src/android/src/main/res/raw/
+.DS_Store
 .idea/

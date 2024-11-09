@@ -1,5 +1,0 @@
-include "src:simulator"
-include "src:pc"
-
-// Uncomment the next line to build the Android version
-//include "src:android"
