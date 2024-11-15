@@ -2,10 +2,10 @@ package MyBlockDesign;
 
 import javax.swing.*;
 
-public class MainClass {
+public class ProjectAction {
 
     public static void main(String[] args) {
-        DrMIPSFile file = MainClass.createEmptyFile(null);
+        DrMIPSFile file = ProjectAction.createEmptyFile(null);
         final Project ret = new Project(file);
         SwingUtilities.invokeLater(new CreateFrame(ret));
     }

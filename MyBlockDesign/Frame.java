@@ -11,6 +11,8 @@ public class Frame extends LFrame.MainWindow {
     private final Project project;
     private final Canvas layoutCanvas;
 
+    private final BasicZoomModel layoutZoomModel;
+
     public Frame(Project project) {
         super(project);
         this.project = project;
@@ -22,6 +24,13 @@ public class Frame extends LFrame.MainWindow {
 
 
         layoutCanvas = new Canvas(project);
+        final CanvasPane canvasPane = new CanvasPane(layoutCanvas);
+
+        layoutZoomModel = new BasicZoomModel(
+                AppPreferences.LAYOUT_SHOW_GRID,
+                AppPreferences.LAYOUT_ZOOM,
+                buildZoomSteps(),
+                canvasPane);
     }
 
     public void initComponents() {

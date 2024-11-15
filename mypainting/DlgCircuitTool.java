@@ -1,6 +1,13 @@
 package mypainting;
 
+import MyBlockDesign.DrMIPSFile;
+import MyBlockDesign.Frame;
+import MyBlockDesign.Project;
+import MyBlockDesign.ProjectAction;
+
 import javax.swing.*;
+
+import static MyBlockDesign.ProjectAction.createFrame;
 
 public class DlgCircuitTool extends JDialog {
 
@@ -21,7 +28,9 @@ public class DlgCircuitTool extends JDialog {
 
     private void initComponents() {
         jPanel1 = new JPanel();
-
+        DrMIPSFile file = ProjectAction.createEmptyFile(null);
+        final Project prj = new Project(file);
+        final Frame frame = createFrame(null, prj);
 //        cmdClose = new JButton();
 //        cmdClose.setText("close");
 //        cmdClose.addActionListener(new java.awt.event.ActionListener() {
