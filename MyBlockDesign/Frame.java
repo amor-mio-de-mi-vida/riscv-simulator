@@ -2,6 +2,7 @@ package MyBlockDesign;
 
 import javax.swing.*;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JButton;
 
 public class Frame extends LFrame.MainWindow {
@@ -17,8 +18,6 @@ public class Frame extends LFrame.MainWindow {
         super(project);
         this.project = project;
 
-        initComponents();
-
         setBackground(Color.white);
 //        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
@@ -31,13 +30,29 @@ public class Frame extends LFrame.MainWindow {
                 AppPreferences.LAYOUT_ZOOM,
                 buildZoomSteps(),
                 canvasPane);
-    }
-
-    public void initComponents() {
-
+        layoutCanvas.getGridPainter().setZoomModel(layoutZoomModel);
     }
 
     public Canvas getCanvas() {
         return layoutCanvas;
     }
+
+    private ArrayList<Double> buildZoomSteps() {
+        // Pairs must be in acending order (sorted by maxZoom value).
+        final var config = new ZoomStepPair[] {new ZoomStepPair(50, 5), new ZoomStepPair(200, 10), new ZoomStepPair(1000, 20)};
+
+        // Result zoomsteps.
+        final var steps = new ArrayList<Double>();
+        var zoom = 0D;
+        for (final var pair : config) {
+            while (zoom < pair.maxZoom()) {
+                zoom += pair.step();
+                steps.add(zoom);
+            }
+        }
+        return steps;
+    }
+    private record ZoomStepPair(int maxZoom, int step) {}
+
+
 }

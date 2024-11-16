@@ -5,6 +5,7 @@ public class Project {
 
     private Frame frame = null;
     private DrMIPSFile file;
+//    private CircuitState circuitState;
 
     public Project(DrMIPSFile file) {
         setDrMIPSFile(file);
@@ -16,6 +17,11 @@ public class Project {
         if (frame == value) return;
         final Frame oldValue = frame;
         frame = value;
+    }
+
+    public Circuit getCurrentCircuit() {
+        return null;
+//        return circuitState == null ? null : circuitState.getCircuit();
     }
 
 }
