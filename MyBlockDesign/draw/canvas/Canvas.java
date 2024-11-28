@@ -1,4 +1,10 @@
 package MyBlockDesign.draw.canvas;
 
-public class Canvas {
+import MyBlockDesign.drmips.comp.Component;
+
+import javax.swing.*;
+
+public class Canvas extends JComponent {
+
+
 }

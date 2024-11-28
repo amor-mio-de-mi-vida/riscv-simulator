@@ -1,5 +1,8 @@
 package MyBlockDesign;
 
+import MyBlockDesign.drmips.gui.main.Frame;
+import MyBlockDesign.drmips.proj.Project;
+
 import javax.swing.*;
 
 public class ProjectAction {

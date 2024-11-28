@@ -1,5 +1,7 @@
 package MyBlockDesign;
 
+import MyBlockDesign.drmips.gui.generic.ZoomModel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentEvent;

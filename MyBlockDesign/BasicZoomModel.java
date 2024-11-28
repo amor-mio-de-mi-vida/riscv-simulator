@@ -1,5 +1,8 @@
 package MyBlockDesign;
 
+import MyBlockDesign.drmips.gui.generic.ZoomModel;
+import MyBlockDesign.drmips.prefs.PrefMonitor;
+
 import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;

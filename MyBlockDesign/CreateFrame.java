@@ -1,5 +1,8 @@
 package MyBlockDesign;
 
+import MyBlockDesign.drmips.gui.main.Frame;
+import MyBlockDesign.drmips.proj.Project;
+
 public class CreateFrame implements Runnable{
 
     private final Project proj;
@@ -16,7 +19,7 @@ public class CreateFrame implements Runnable{
             frame.toFront();
             frame.getCanvas().requestFocus();
         } catch (Exception e) {
-            System.out.println("Create MyBlockDesign.Frame error!");
+            System.out.println("Create MyBlockDesign.drmips.gui.main.Frame error!");
         }
     }
 

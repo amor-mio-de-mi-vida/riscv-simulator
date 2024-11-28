@@ -1,5 +1,7 @@
 package MyBlockDesign;
 
+import MyBlockDesign.drmips.data.Location;
+
 public class Wire {
     final Location e0;
     final Location e1;

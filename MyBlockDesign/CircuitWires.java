@@ -1,5 +1,7 @@
 package MyBlockDesign;
 
+import MyBlockDesign.drmips.data.Bounds;
+
 import java.util.HashSet;
 
 public class CircuitWires {
