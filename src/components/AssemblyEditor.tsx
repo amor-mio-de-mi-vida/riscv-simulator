@@ -605,6 +605,10 @@ export function AssemblyEditor() {
                 <option value="fibonacci">Fibonacci Program</option>
                 <option value="gcd">GCD Program</option>
                 <option value="prime_check">Prime Number Checker</option>
+                <option value="arith_test">Arithmetic Test</option>
+                <option value="branch_test">Branch Test</option>
+                <option value="data_test">Data Test</option>
+                <option value="mix_test">Mix Test</option>
 
                 {/* Data Structure Examples */}
 

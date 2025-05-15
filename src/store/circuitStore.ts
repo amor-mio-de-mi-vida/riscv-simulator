@@ -791,12 +791,11 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
     if (!instruction) {
       // If pipeline statistics are disabled, return early without updating pipeline-specific stats
       if (stats.enablePipelineStats) {
-            // Update CPI and IPC
-      stats.cpi = stats.cycleCount / (stats.instructionsExecuted || 1);
-      stats.ipc = stats.instructionsExecuted / (stats.cycleCount || 1);
+        // Update CPI and IPC
+        stats.cpi = stats.cycleCount / (stats.instructionsExecuted || 1);
+        stats.ipc = stats.instructionsExecuted / (stats.cycleCount || 1);
         return { performanceStats: stats };
       }
-
       return { };
     }
 
@@ -807,7 +806,6 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
     // Update CPI and IPC
     stats.cpi = stats.cycleCount / (stats.instructionsExecuted || 1);
     stats.ipc = stats.instructionsExecuted / (stats.cycleCount || 1);
-
 
     // Determine instruction type and update counts
     const opcode = instruction.split(' ')[0];
@@ -823,25 +821,51 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
       // Check for memory reads
       if (['lb', 'lh', 'lw', 'lbu', 'lhu'].includes(opcode)) {
         stats.memoryReadCount++;
+        // Memory reads can cause stalls
+        if (stats.enablePipelineStats) {
+          stats.memoryStalls++;
+          stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+        }
       }
     }
     // S-type instructions (sb, sh, sw)
     else if (['sb', 'sh', 'sw'].includes(opcode)) {
       stats.sTypeCount++;
       stats.memoryWriteCount++;
+      // Memory writes can cause stalls
+      if (stats.enablePipelineStats) {
+        stats.memoryStalls++;
+        stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+      }
     }
     // B-type instructions (beq, bne, blt, bge, bltu, bgeu)
     else if (['beq', 'bne', 'blt', 'bge', 'bltu', 'bgeu'].includes(opcode)) {
       stats.bTypeCount++;
       stats.branchCount++;
+      
+      // When a branch instruction is executed, increment control hazard stalls
+      // This is because every branch instruction causes a control hazard
+      if (stats.enablePipelineStats) {
+        stats.controlHazardStalls++;
+        stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+      }
 
-      // // Check for branch taken/not taken (simplified, actual logic would need to check ALU result)
-      // const branchTaken = Math.random() < 0.5; // Simplified for demonstration
-      // if (branchTaken) {
-      //   stats.branchTakenCount++;
-      // } else {
-      //   stats.branchNotTakenCount++;
-      // }
+      // Update branch statistics
+      // For demonstration, we'll use a simple prediction strategy:
+      // - For beq/bne: predict not taken
+      // - For blt/bge/bltu/bgeu: predict taken
+      const isBranchTaken = ['blt', 'bge', 'bltu', 'bgeu'].includes(opcode);
+      if (isBranchTaken) {
+        stats.branchTakenCount++;
+      } else {
+        stats.branchNotTakenCount++;
+      }
+
+      // Calculate misprediction rate
+      const totalBranches = stats.branchTakenCount + stats.branchNotTakenCount;
+      if (totalBranches > 0) {
+        stats.branchMispredictionRate = stats.branchMispredictionCount / totalBranches;
+      }
     }
     // U-type instructions (lui, auipc)
     else if (['lui', 'auipc'].includes(opcode)) {
@@ -850,6 +874,21 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
     // J-type instructions (jal)
     else if (['jal'].includes(opcode)) {
       stats.jTypeCount++;
+      // JAL instructions also cause control hazards
+      if (stats.enablePipelineStats) {
+        stats.controlHazardStalls++;
+        stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+      }
+
+      // JAL is always taken, so update branch statistics
+      stats.branchCount++;
+      stats.branchTakenCount++;
+      
+      // Calculate misprediction rate
+      const totalBranches = stats.branchTakenCount + stats.branchNotTakenCount;
+      if (totalBranches > 0) {
+        stats.branchMispredictionRate = stats.branchMispredictionCount / totalBranches;
+      }
     }
 
     return { performanceStats: stats };
