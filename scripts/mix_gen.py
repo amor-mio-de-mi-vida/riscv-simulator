@@ -1,143 +1,202 @@
 # mix_gen.py
 import sys
-from datetime import datetime
 import os
+import random
+from datetime import datetime
 
-total_instructions = 2000
+# 1. 支持命令行参数控制指令数量
+total_instructions = int(sys.argv[1]) if len(sys.argv) > 1 else 2000
 
-# 初始化数据
-init = [
-    # 基本计数器
-    "addi x1, x0, 0",      # 主循环计数器
-    f"addi x2, x0, {total_instructions}",  # 循环上限
-    # 数据区域指针
-    "lui  x3, 0x10000",    # 数据区域基地址
-    "addi x4, x3, 0",      # 当前数据指针
-    # 测试数据
-    "addi x5, x0, 0x1234", # 测试数据1
-    "addi x6, x0, 0x1002", # 测试数据2
-    "addi x7, x0, 0x09DC", # 测试数据3
-    "addi x8, x0, 0x00DD", # 测试数据4
-    # 临时寄存器
-    "addi x9, x0, 0",      # 临时寄存器1
-    "addi x10, x0, 0",     # 临时寄存器2
-    "addi x11, x0, 0",     # 临时寄存器3
-    "addi x12, x0, 0",     # 临时寄存器4
-    # 数据区域初始化
-    "sw   x5, 0(x4)",      # 存储测试数据1
-    "sw   x6, 4(x4)",      # 存储测试数据2
-    "sw   x7, 8(x4)",      # 存储测试数据3
-    "sw   x8, 12(x4)"      # 存储测试数据4
-]
-
-# 测试场景1：算术运算和数据访问
-arith_data = [
-    "lw   x13, 0(x4)",     # 加载数据
-    "addi x13, x13, 1",    # 加1
-    "sw   x13, 0(x4)",     # 存储结果
-    "lw   x14, 4(x4)",     # 加载数据
-    "sub  x14, x14, x13",  # 减法
-    "sw   x14, 4(x4)"      # 存储结果
-]
-
-# 测试场景2：逻辑运算和分支
-logic_branch = [
-    "lw   x15, 8(x4)",     # 加载数据
-    "andi x15, x15, 0xFF", # 与运算
-    "beq  x15, x0, skip_logic",  # 条件分支
-    "ori  x15, x15, 0x100",     # 或运算
-    "skip_logic:",
-    "sw   x15, 8(x4)"      # 存储结果
-]
-
-# 测试场景3：移位和数据移动
-shift_move = [
-    "lw   x16, 12(x4)",    # 加载数据
-    "slli x16, x16, 2",    # 逻辑左移
-    "sw   x16, 16(x4)",    # 存储结果
-    "lw   x17, 16(x4)",    # 加载结果
-    "srli x17, x17, 1",    # 逻辑右移
-    "sw   x17, 20(x4)"     # 存储结果
-]
-
-# 测试场景4：比较和条件存储
-compare_store = [
-    "lw   x18, 0(x4)",     # 加载数据1
-    "lw   x19, 4(x4)",     # 加载数据2
-    "blt  x18, x19, store_less",  # 有符号比较
-    "sw   x18, 24(x4)",    # 存储较大值
-    "jal  x0, skip_store",
-    "store_less:",
-    "sw   x19, 24(x4)",    # 存储较大值
-    "skip_store:"
-]
-
-# 测试场景5：复杂数据操作
-complex_data = [
-    "lw   x20, 8(x4)",     # 加载数据
-    "addi x20, x20, 1",    # 加1
-    "sw   x20, 28(x4)",    # 存储中间结果
-    "lw   x21, 28(x4)",    # 加载中间结果
-    "slli x21, x21, 2",    # 左移2位
-    "addi x21, x21, 4",    # 加4
-    "sw   x21, 32(x4)"     # 存储最终结果
-]
-
-# 计算循环次数
-loop_count = (total_instructions - len(init) - 1) // (len(arith_data) + len(logic_branch) + len(shift_move) + len(compare_store) + len(complex_data))
-
-# 生成输出文件名，包含时间戳
 output_file = os.path.join("public", "test-programs", f"mix_test.s")
-
-# 确保输出目录存在
 os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
-# 生成汇编代码
+# 可用寄存器池（避免x0/x1/x2等特殊寄存器）
+reg_pool = [f"x{i}" for i in range(10, 32)]
+mem_base = "x3"  # 假设x3为基址
+mem_offsets = [i*4 for i in range(0, 32)]
+
+def get_valid_jump_targets(current_pos, label_positions, labels, max_jump_distance=100):
+    """获取有效的跳转目标，确保跳转距离在合理范围内"""
+    valid_targets = []
+    for i, pos in enumerate(label_positions):
+        # 只允许向前跳转，且跳转距离不超过max_jump_distance
+        if pos > current_pos and (pos - current_pos) <= max_jump_distance:
+            valid_targets.append((pos, labels[i]))
+    return valid_targets
+
+# 减少分支指令的权重
+ops = [
+    # 算术型 (权重: 40%)
+    ("add",  "{dst}, {dst}, {src}"),
+    ("sub",  "{dst}, {dst}, {src}"),
+    ("mul",  "{dst}, {dst}, {src}"),
+    ("addi", "{dst}, {src}, {imm}"),
+    # 逻辑型 (权重: 30%)
+    ("and",  "{dst}, {dst}, {src}"),
+    ("or",   "{dst}, {dst}, {src}"),
+    ("xor",  "{dst}, {dst}, {src}"),
+    ("andi", "{dst}, {src}, {imm}"),
+    ("ori",  "{dst}, {src}, {imm}"),
+    ("xori", "{dst}, {src}, {imm}"),
+    # 移位型 (权重: 20%)
+    ("sll",  "{dst}, {dst}, {src}"),
+    ("srl",  "{dst}, {dst}, {src}"),
+    ("sra",  "{dst}, {dst}, {src}"),
+    ("slli", "{dst}, {src}, {imm}"),
+    ("srli", "{dst}, {src}, {imm}"),
+    ("srai", "{dst}, {src}, {imm}"),
+    # 比较型 (权重: 5%)
+    ("slt",  "{dst}, {dst}, {src}"),
+    ("sltu", "{dst}, {dst}, {src}"),
+    ("slti", "{dst}, {src}, {imm}"),
+    ("sltiu", "{dst}, {src}, {imm}"),
+    # 访存型 (权重: 3%)
+    ("lw",   "{dst}, {offset}({base})"),
+    ("sw",   "{src}, {offset}({base})"),
+    # 分支型 (权重: 2%)
+    ("beq",  "{src1}, {src2}, {label}"),
+    ("bne",  "{src1}, {src2}, {label}"),
+    ("blt",  "{src1}, {src2}, {label}"),
+    ("bge",  "{src1}, {src2}, {label}"),
+    ("bltu", "{src1}, {src2}, {label}"),
+    ("bgeu", "{src1}, {src2}, {label}"),
+    ("jal",  "{dst}, {label}"),
+    ("jalr", "{dst}, {src}, {imm}"),
+]
+
+# 为不同类型的指令设置权重
+op_weights = {
+    "add": 10, "sub": 10, "mul": 10, "addi": 10,  # 算术型
+    "and": 6, "or": 6, "xor": 6, "andi": 6, "ori": 6, "xori": 6,  # 逻辑型
+    "sll": 4, "srl": 4, "sra": 4, "slli": 4, "srli": 4, "srai": 4,  # 移位型
+    "slt": 1, "sltu": 1, "slti": 1, "sltiu": 1,  # 比较型
+    "lw": 1, "sw": 1,  # 访存型
+    "beq": 1, "bne": 1, "blt": 1, "bge": 1, "bltu": 1, "bgeu": 1, "jal": 1, "jalr": 1  # 分支型
+}
+
+def random_reg(exclude=None):
+    pool = [r for r in reg_pool if r != exclude]
+    return random.choice(pool)
+
+def random_offset():
+    return random.choice(mem_offsets)
+
+def random_imm():
+    return random.randint(-2048, 2047)
+
+def weighted_choice(choices, weights):
+    total = sum(weights)
+    r = random.uniform(0, total)
+    upto = 0
+    for c, w in zip(choices, weights):
+        if upto + w >= r:
+            return c
+        upto += w
+    return choices[-1]
+
 with open(output_file, 'w') as f:
-    # 写入文件头注释
-    f.write("# Generated mixed instruction test program\n")
-    f.write(f"# Generated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-    f.write(f"# Total instructions: {total_instructions}\n")
-    f.write(f"# Loop count: {loop_count}\n\n")
+    f.write("# Randomized mixed hazard test program\n")
+    f.write(f"# Generated at: {datetime.now()}\n")
+    f.write(f"# Total instructions: {total_instructions}\n\n")
+    f.write(".data\n    .align 4\n    .space 1024\n\n.text\n")
+
+    # 初始化基址寄存器和部分数据寄存器
+    f.write("    lui x3, 0x10000\n")
+    for i, reg in enumerate(reg_pool[:4]):
+        f.write(f"    addi {reg}, x0, {random_imm()}\n")
+    f.write("\n")
+
+    # 预生成标签位置，确保标签分布更均匀
+    num_labels = total_instructions // 20  # 每20条指令一个标签
+    label_positions = []
+    for i in range(num_labels):
+        # 确保标签位置在合理范围内
+        start = i * 20
+        end = min((i + 1) * 20, total_instructions - 10)  # 留出足够的空间给后续指令
+        pos = random.randint(start, end)
+        label_positions.append(pos)
+    label_positions.sort()
     
-    # 写入数据段
-    f.write(".data\n")
-    f.write("    .align 4\n")
-    f.write("    .space 1024  # 预分配1KB数据空间\n\n")
+    # 生成标签
+    labels = [f"label_{i}" for i in range(num_labels)]
+    labels.append("end_program")  # 添加结束标签
+
+    last_dst = random_reg()
+    branch_count = 0
+    current_label = 0
     
-    # 写入代码段
-    f.write(".text\n")
-    
-    # 写入初始化代码
-    f.write('\n'.join(init))
-    f.write('\n\n')
-    
-    # 写入主循环
-    f.write("loop_mix:\n")
-    for _ in range(loop_count):
-        # 算术运算和数据访问测试
-        for line in arith_data:
-            f.write(f"    {line}\n")
-        # 逻辑运算和分支测试
-        for line in logic_branch:
-            f.write(f"    {line}\n")
-        # 移位和数据移动测试
-        for line in shift_move:
-            f.write(f"    {line}\n")
-        # 比较和条件存储测试
-        for line in compare_store:
-            f.write(f"    {line}\n")
-        # 复杂数据操作测试
-        for line in complex_data:
-            f.write(f"    {line}\n")
+    for i in range(total_instructions):
+        # 在预定义的位置添加标签
+        if current_label < len(label_positions) and i == label_positions[current_label]:
+            f.write(f"\n{labels[current_label]}:\n")
+            current_label += 1
+
+        # 根据权重选择指令
+        op, fmt = weighted_choice(ops, [op_weights[op] for op, _ in ops])
         
-        # 更新计数器
-        f.write("    addi x1, x1, 1\n")
-        f.write("    beq  x1, x2, end_mix\n")
-        f.write("    jal  x0, loop_mix\n\n")
-    
-    # 写入结束标签
-    f.write("end_mix:\n")
+        if op in ["lw", "sw"]:
+            if op == "lw":
+                dst = last_dst  # 强制WAW
+                line = f"lw {dst}, {random_offset()}({mem_base})"
+            else:
+                src = last_dst  # 强制RAW
+                line = f"sw {src}, {random_offset()}({mem_base})"
+            last_dst = dst if op == "lw" else last_dst
+        elif op in ["addi", "andi", "ori", "xori", "slti", "sltiu", "slli", "srli", "srai", "jalr"]:
+            dst = last_dst  # 强制WAW
+            src = random_reg(exclude=dst)  # 强制RAW
+            if op == "jalr":
+                # 对于jalr，使用较小的立即数偏移
+                imm = random.randint(-128, 127)
+            else:
+                imm = random_imm()
+            line = f"{op} {dst}, {src}, {imm}"
+            last_dst = dst
+        elif op in ["beq", "bne", "blt", "bge", "bltu", "bgeu"]:
+            # 每50条指令最多生成一个分支
+            if branch_count >= total_instructions // 50:
+                continue
+                
+            # 获取有效的跳转目标
+            valid_targets = get_valid_jump_targets(i, label_positions, labels)
+            if not valid_targets:  # 如果没有有效的跳转目标，跳转到end_program
+                valid_targets = [(len(label_positions), "end_program")]
+            
+            # 随机选择一个有效的跳转目标
+            target_pos, target_label = random.choice(valid_targets)
+            
+            src1 = last_dst  # 强制RAW
+            src2 = random_reg(exclude=src1)
+            line = f"{op} {src1}, {src2}, {target_label}"
+            f.write(f"    {line}\n")
+            branch_count += 1
+            continue
+        elif op == "jal":
+            # 每100条指令最多生成一个跳转
+            if branch_count >= total_instructions // 100:
+                continue
+                
+            # 获取有效的跳转目标
+            valid_targets = get_valid_jump_targets(i, label_positions, labels)
+            if not valid_targets:  # 如果没有有效的跳转目标，跳转到end_program
+                valid_targets = [(len(label_positions), "end_program")]
+            
+            # 随机选择一个有效的跳转目标
+            target_pos, target_label = random.choice(valid_targets)
+            
+            dst = last_dst  # 强制WAW
+            line = f"jal {dst}, {target_label}"
+            f.write(f"    {line}\n")
+            branch_count += 1
+            continue
+        else:
+            dst = last_dst  # 强制WAW
+            src = random_reg(exclude=dst)  # 强制RAW
+            line = f"{op} {dst}, {dst}, {src}"
+            last_dst = dst
+        f.write(f"    {line}\n")
+
+    f.write("\nend_program:\n")
     f.write("    nop\n")
 
-print(f"Generated mixed instruction test code has been written to {output_file}")
+print(f"Generated mixed hazard test code has been written to {output_file}")

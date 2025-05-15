@@ -1,2250 +1,1964 @@
-# Generated mixed instruction test program
-# Generated at: 2025-05-15 12:05:13
+# Randomized mixed hazard test program
+# Generated at: 2025-05-16 00:24:12.837560
 # Total instructions: 2000
-# Loop count: 60
 
 .data
     .align 4
-    .space 1024  # 预分配1KB数据空间
+    .space 1024
 
 .text
-addi x1, x0, 0
-addi x2, x0, 2000
-lui  x3, 0x10000
-addi x4, x3, 0
-addi x5, x0, 0x1234
-addi x6, x0, 0x1002
-addi x7, x0, 0x09DC
-addi x8, x0, 0x00DD
-addi x9, x0, 0
-addi x10, x0, 0
-addi x11, x0, 0
-addi x12, x0, 0
-sw   x5, 0(x4)
-sw   x6, 4(x4)
-sw   x7, 8(x4)
-sw   x8, 12(x4)
+    lui x3, 0x10000
+    addi x10, x0, -571
+    addi x11, x0, -1735
+    addi x12, x0, -1035
+    addi x13, x0, -231
 
-loop_mix:
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-    lw   x13, 0(x4)
-    addi x13, x13, 1
-    sw   x13, 0(x4)
-    lw   x14, 4(x4)
-    sub  x14, x14, x13
-    sw   x14, 4(x4)
-    lw   x15, 8(x4)
-    andi x15, x15, 0xFF
-    beq  x15, x0, skip_logic
-    ori  x15, x15, 0x100
-    skip_logic:
-    sw   x15, 8(x4)
-    lw   x16, 12(x4)
-    slli x16, x16, 2
-    sw   x16, 16(x4)
-    lw   x17, 16(x4)
-    srli x17, x17, 1
-    sw   x17, 20(x4)
-    lw   x18, 0(x4)
-    lw   x19, 4(x4)
-    blt  x18, x19, store_less
-    sw   x18, 24(x4)
-    jal  x0, skip_store
-    store_less:
-    sw   x19, 24(x4)
-    skip_store:
-    lw   x20, 8(x4)
-    addi x20, x20, 1
-    sw   x20, 28(x4)
-    lw   x21, 28(x4)
-    slli x21, x21, 2
-    addi x21, x21, 4
-    sw   x21, 32(x4)
-    addi x1, x1, 1
-    beq  x1, x2, end_mix
-    jal  x0, loop_mix
-
-end_mix:
+    slti x28, x30, -464
+    bne x28, x30, label_0
+label_0:
+    sll x28, x28, x18
+    sltiu x28, x11, 605
+    add x28, x28, x30
+    srai x28, x20, -127
+    srl x28, x28, x12
+    xor x28, x28, x27
+    mul x28, x28, x13
+    sra x28, x28, x24
+    add x28, x28, x27
+    xori x28, x21, 807
+    or x28, x28, x31
+    xor x28, x28, x13
+    sra x28, x28, x30
+    sll x28, x28, x25
+    ori x28, x31, 733
+    sub x28, x28, x27
+    and x28, x28, x18
+    srl x28, x28, x23
+    sub x28, x28, x18
+    slli x28, x22, 174
+    bgeu x28, x21, label_1
+label_1:
+    xori x28, x12, -884
+    sltiu x28, x22, 1470
+    sll x28, x28, x16
+    add x28, x28, x27
+    srl x28, x28, x12
+    xor x28, x28, x27
+    addi x28, x13, -587
+    add x28, x28, x17
+    jalr x28, x26, 673
+    add x28, x28, x30
+    add x28, x28, x11
+    addi x28, x23, -220
+    sub x28, x28, x25
+    and x28, x28, x24
+    or x28, x28, x31
+    mul x28, x28, x17
+    ori x28, x19, 1491
+    ori x28, x11, 114
+    add x28, x28, x23
+    addi x28, x24, -1713
+    mul x28, x28, x18
+    add x28, x28, x24
+    addi x28, x27, 1401
+    sub x28, x28, x23
+    sub x28, x28, x31
+    add x28, x28, x11
+    mul x28, x28, x23
+    srl x28, x28, x14
+    add x28, x28, x10
+    mul x28, x28, x18
+    sll x28, x28, x10
+    addi x28, x22, 512
+    add x28, x28, x15
+    mul x28, x28, x21
+    xori x28, x30, 1717
+    add x28, x28, x14
+    xori x28, x16, 1651
+    xor x28, x28, x19
+    andi x28, x15, -1829
+    ori x28, x25, -1350
+    srli x28, x23, 1223
+    xori x28, x13, 15
+    andi x28, x27, 432
+    sltiu x28, x27, -1278
+    srl x28, x28, x23
+    xor x28, x28, x16
+    add x28, x28, x11
+    jalr x28, x10, -1363
+    add x28, x28, x21
+    add x28, x28, x14
+    ori x28, x21, 200
+    add x28, x28, x11
+    addi x28, x15, 298
+    or x28, x28, x12
+    mul x28, x28, x24
+    srai x28, x18, 1267
+    sub x28, x28, x24
+    mul x28, x28, x15
+    mul x28, x28, x23
+    add x28, x28, x10
+    ori x28, x11, 597
+    and x28, x28, x20
+    addi x28, x15, -333
+    mul x28, x28, x15
+    bltu x28, x24, label_2
+label_2:
+    sll x28, x28, x12
+    sra x28, x28, x15
+    srli x28, x15, 516
+    xor x28, x28, x24
+    ori x28, x14, -908
+    addi x28, x20, 1857
+    sra x28, x28, x21
+    bge x28, x27, label_3
+label_3:
+    slli x28, x23, 508
+    add x28, x28, x14
+    or x28, x28, x16
+    addi x28, x16, -1164
+    xori x28, x31, -1006
+    mul x28, x28, x16
+    mul x28, x28, x25
+    beq x28, x12, label_4
+label_4:
+    sub x28, x28, x25
+    xor x28, x28, x24
+    sub x28, x28, x17
+    addi x28, x14, 232
+    or x28, x28, x21
+    ori x28, x24, 1146
+    xori x28, x14, -698
+    mul x28, x28, x15
+    sub x28, x28, x27
+    ori x28, x26, 551
+    sub x28, x28, x30
+    add x28, x28, x29
+    sll x28, x28, x18
+    bge x28, x30, label_5
+label_5:
+    lw x28, 112(x3)
+    xor x28, x28, x15
+    srl x28, x28, x16
+    and x28, x28, x19
+    sub x28, x28, x11
+    blt x28, x10, label_6
+label_6:
+    srl x28, x28, x10
+    add x28, x28, x14
+    srai x28, x17, -2048
+    sub x28, x28, x16
+    or x28, x28, x29
+    andi x28, x12, 639
+    addi x28, x11, -1143
+    sltu x28, x28, x29
+    ori x28, x30, -1581
+    addi x28, x21, 838
+    xori x28, x16, 332
+    add x28, x28, x31
+    mul x28, x28, x30
+    blt x28, x23, label_7
+label_7:
+    mul x28, x28, x17
+    jalr x28, x23, 415
+    addi x28, x31, -1836
+    ori x28, x31, -1196
+    addi x28, x17, 554
+    bgeu x28, x11, label_8
+label_8:
+    bge x28, x14, label_9
+label_9:
+    sub x28, x28, x21
+    bge x28, x14, label_10
+label_10:
+    blt x28, x17, label_11
+label_11:
+    bgeu x28, x15, label_12
+label_12:
+    sra x28, x28, x14
+    sll x28, x28, x27
+    srli x28, x19, -802
+    xor x28, x28, x11
+    srai x28, x21, -1785
+    xori x28, x11, -1657
+    and x28, x28, x19
+    srl x28, x28, x20
+    xori x28, x16, 1568
+    and x28, x28, x22
+    bne x28, x22, label_13
+label_13:
+    beq x28, x22, label_14
+label_14:
+    sub x28, x28, x11
+    bne x28, x15, label_15
+label_15:
+    slti x28, x19, 1023
+    sltiu x28, x14, 917
+    addi x28, x19, -1044
+    bgeu x28, x13, label_16
+label_16:
+    srl x28, x28, x17
+    and x28, x28, x18
+    addi x28, x10, -1570
+    sub x28, x28, x23
+    sw x28, 92(x3)
+    or x28, x28, x20
+    sub x28, x28, x29
+    slti x28, x31, 991
+    addi x28, x31, -340
+    mul x28, x28, x19
+    andi x28, x26, 891
+    blt x28, x14, label_17
+label_17:
+    mul x28, x28, x21
+    srai x28, x18, -578
+    slli x28, x26, 1739
+    mul x28, x28, x24
+    sll x28, x28, x19
+    sub x28, x28, x24
+    slt x28, x28, x23
+    andi x28, x14, -165
+    ori x28, x21, 145
+    mul x28, x28, x29
+    mul x28, x28, x25
+    jal x28, label_18
+label_18:
+    andi x28, x27, -945
+    and x28, x28, x10
+    or x28, x28, x15
+    slli x28, x11, -545
+    srli x28, x21, 1825
+    mul x28, x28, x29
+    ori x28, x11, -225
+    addi x28, x30, 677
+    or x28, x28, x18
+    lw x28, 68(x3)
+    or x28, x28, x12
+    srl x28, x28, x11
+    add x28, x28, x29
+    sub x28, x28, x20
+    add x28, x28, x24
+    srli x28, x19, 939
+    addi x28, x13, 254
+    addi x28, x30, 952
+    srli x28, x12, -885
+    addi x28, x22, -2016
+    andi x28, x10, 1537
+    addi x28, x15, -298
+    slli x28, x31, 1505
+    xor x28, x28, x23
+    mul x28, x28, x18
+    sub x28, x28, x13
+    mul x28, x28, x23
+    mul x28, x28, x17
+    or x28, x28, x14
+    add x28, x28, x25
+    sub x28, x28, x18
+    sll x28, x28, x27
+    bge x28, x16, label_19
+label_19:
+    sub x28, x28, x19
+    or x28, x28, x15
+    xor x28, x28, x24
+    beq x28, x12, label_20
+label_20:
+    add x28, x28, x31
+    srli x28, x23, 1498
+    sub x28, x28, x29
+    andi x28, x22, -323
+    mul x28, x28, x19
+    sub x28, x28, x11
+    srli x28, x12, -1384
+    andi x28, x16, 1948
+    sll x28, x28, x29
+    or x28, x28, x14
+    or x28, x28, x11
+    and x28, x28, x26
+    mul x28, x28, x22
+    and x28, x28, x13
+    srai x28, x23, -717
+    sltiu x28, x13, 1554
+    and x28, x28, x17
+    addi x28, x26, 184
+    add x28, x28, x24
+    mul x28, x28, x23
+    srl x28, x28, x25
+    mul x28, x28, x22
+    sub x28, x28, x31
+    and x28, x28, x13
+    sra x28, x28, x16
+    addi x28, x15, 897
+    xori x28, x17, -951
+    ori x28, x22, 1898
+    srai x28, x26, 373
+    sra x28, x28, x19
+    srl x28, x28, x20
+    sra x28, x28, x31
+    sub x28, x28, x20
+    sub x28, x28, x16
+    xor x28, x28, x30
+    sub x28, x28, x22
+    srli x28, x23, -405
+    ori x28, x21, -782
+    add x28, x28, x15
+    bgeu x28, x26, label_21
+label_21:
+    addi x28, x29, -1587
+    ori x28, x20, -223
+    sub x28, x28, x13
+    andi x28, x11, 1861
+    addi x28, x10, 1878
+    sll x28, x28, x14
+    mul x28, x28, x22
+    and x28, x28, x30
+    andi x28, x15, 1292
+    slli x28, x31, 943
+    andi x28, x12, 1157
+    blt x28, x22, label_22
+label_22:
+    srl x28, x28, x27
+    ori x28, x11, 1775
+    sll x28, x28, x13
+    or x28, x28, x26
+    mul x28, x28, x31
+    sub x28, x28, x11
+    mul x28, x28, x15
+    addi x28, x20, 785
+    xori x28, x17, 899
+    mul x28, x28, x15
+    srli x28, x29, 22
+    addi x28, x14, -1067
+    xori x28, x30, 715
+    mul x28, x28, x17
+    or x28, x28, x23
+    and x28, x28, x25
+    andi x28, x21, -1393
+    add x28, x28, x25
+    xor x28, x28, x19
+    add x28, x28, x29
+    addi x28, x14, -2002
+    mul x28, x28, x12
+    mul x28, x28, x26
+    and x28, x28, x16
+    sll x28, x28, x16
+    sll x28, x28, x14
+    xori x28, x18, 1028
+    srli x28, x27, 614
+    xori x28, x17, 1031
+    srli x28, x11, 2011
+    srl x28, x28, x18
+    slli x28, x31, -720
+    addi x28, x17, 749
+    sub x28, x28, x25
+    andi x28, x15, -564
+    andi x28, x13, -1136
+    mul x28, x28, x12
+    srai x28, x21, -653
+    srai x28, x10, -1313
+    sub x28, x28, x27
+    sll x28, x28, x17
+    xor x28, x28, x10
+    sub x28, x28, x26
+    srai x28, x10, 1538
+    xori x28, x14, 605
+    mul x28, x28, x16
+    sltiu x28, x10, -899
+    xori x28, x31, -387
+    mul x28, x28, x13
+    andi x28, x24, -576
+    mul x28, x28, x13
+    sll x28, x28, x10
+    mul x28, x28, x18
+    mul x28, x28, x30
+    mul x28, x28, x22
+    and x28, x28, x23
+    sltu x28, x28, x13
+    ori x28, x31, -939
+    ori x28, x16, -1514
+    sltiu x28, x24, 1344
+    andi x28, x24, 1687
+    bltu x28, x13, label_23
+label_23:
+    srl x28, x28, x17
+    addi x28, x27, -639
+    mul x28, x28, x18
+    slli x28, x15, -872
+    addi x28, x18, -702
+    sub x28, x28, x23
+    add x28, x28, x25
+    addi x28, x17, -1094
+    addi x28, x15, 147
+    srai x28, x26, -1261
+    andi x28, x25, -1640
+    srai x28, x29, 1122
+    slt x28, x28, x11
+    bgeu x28, x12, label_24
+label_24:
+    addi x28, x21, 1161
+    bgeu x28, x10, label_25
+label_25:
+    srl x28, x28, x22
+    srl x28, x28, x16
+    addi x28, x15, -1448
+    addi x28, x27, 931
+    mul x28, x28, x27
+    or x28, x28, x26
+    sw x28, 52(x3)
+    slti x28, x18, -279
+    add x28, x28, x25
+    srli x28, x26, 1543
+    xor x28, x28, x26
+    mul x28, x28, x24
+    mul x28, x28, x27
+    slli x28, x23, -383
+    add x28, x28, x27
+    sll x28, x28, x13
+    srl x28, x28, x12
+    blt x28, x19, label_26
+label_26:
+    mul x28, x28, x24
+    sub x28, x28, x17
+    addi x28, x21, 1963
+    xori x28, x22, -58
+    xor x28, x28, x21
+    andi x28, x17, -1608
+    mul x28, x28, x20
+    andi x28, x11, -537
+    srai x28, x24, -1469
+    lw x28, 104(x3)
+    mul x28, x28, x29
+    xor x28, x28, x29
+    or x28, x28, x23
+    add x28, x28, x11
+    or x28, x28, x29
+    and x28, x28, x19
+    mul x28, x28, x18
+    srai x28, x15, -667
+    andi x28, x21, 909
+    lw x28, 72(x3)
+    sub x28, x28, x24
+    slli x28, x22, -1284
+    xori x28, x10, -1263
+    sub x28, x28, x18
+    blt x28, x24, label_27
+label_27:
+    bne x28, x12, label_28
+label_28:
+    beq x28, x27, label_29
+label_29:
+    lw x28, 64(x3)
+    srl x28, x28, x18
+    srli x28, x29, 879
+    ori x28, x12, 918
+    xor x28, x28, x30
+    andi x28, x23, -2004
+    ori x28, x12, -1242
+    andi x28, x19, -1082
+    and x28, x28, x13
+    and x28, x28, x19
+    add x28, x28, x22
+    mul x28, x28, x14
+    srl x28, x28, x11
+    beq x28, x18, label_30
+label_30:
+    mul x28, x28, x10
+    sltu x28, x28, x19
+    bgeu x28, x22, label_31
+label_31:
+    sll x28, x28, x22
+    mul x28, x28, x22
+    and x28, x28, x23
+    srai x28, x13, -1788
+    sw x28, 68(x3)
+    andi x28, x16, -706
+    mul x28, x28, x29
+    srli x28, x22, -524
+    xori x28, x13, 508
+    sub x28, x28, x14
+    srli x28, x12, -1865
+    add x28, x28, x15
+    addi x28, x26, -964
+    addi x28, x16, 345
+    srl x28, x28, x25
+    slt x28, x28, x19
+    sll x28, x28, x10
+    blt x28, x15, label_32
+label_32:
+    bne x28, x13, label_33
+label_33:
+    ori x28, x25, 1332
+    andi x28, x16, -1612
+    ori x28, x29, -384
+    ori x28, x15, -205
+    sub x28, x28, x14
+    andi x28, x22, -65
+    sub x28, x28, x30
+    or x28, x28, x21
+    blt x28, x22, label_34
+label_34:
+    add x28, x28, x12
+    mul x28, x28, x13
+    ori x28, x11, -412
+    srli x28, x22, 733
+    mul x28, x28, x12
+    sra x28, x28, x26
+    sll x28, x28, x11
+    sub x28, x28, x22
+    addi x28, x24, -737
+    jalr x28, x12, -1622
+    andi x28, x17, -493
+    andi x28, x29, 800
+    ori x28, x16, -386
+    addi x28, x25, 1217
+    slli x28, x16, -1499
+    sub x28, x28, x22
+    addi x28, x27, 518
+    srai x28, x16, -353
+    bltu x28, x13, label_35
+label_35:
+    addi x28, x17, -1338
+    bge x28, x25, label_36
+label_36:
+    sub x28, x28, x12
+    add x28, x28, x16
+    add x28, x28, x23
+    or x28, x28, x24
+    and x28, x28, x29
+    lw x28, 104(x3)
+    add x28, x28, x27
+    add x28, x28, x19
+    addi x28, x18, 681
+    andi x28, x16, 1250
+    addi x28, x31, 645
+    add x28, x28, x13
+    srl x28, x28, x17
+    srli x28, x29, 1901
+    ori x28, x15, -298
+    or x28, x28, x24
+    add x28, x28, x15
+    srl x28, x28, x25
+    xor x28, x28, x13
+    srai x28, x16, -990
+    and x28, x28, x14
+    or x28, x28, x30
+    add x28, x28, x14
+    sll x28, x28, x26
+    srli x28, x13, -1442
+    xori x28, x27, -1074
+    mul x28, x28, x26
+    sll x28, x28, x31
+    andi x28, x22, -1115
+    xori x28, x16, 846
+    sub x28, x28, x21
+    jalr x28, x25, 850
+    and x28, x28, x22
+    addi x28, x19, -2040
+    mul x28, x28, x13
+    and x28, x28, x20
+    xori x28, x13, -848
+    sw x28, 36(x3)
+    and x28, x28, x26
+    bge x28, x31, label_37
+label_37:
+    xori x28, x31, -1802
+    addi x28, x29, 1896
+    sra x28, x28, x27
+    xori x28, x21, 756
+    mul x28, x28, x22
+    sub x28, x28, x22
+    sub x28, x28, x29
+    addi x28, x14, 1943
+    sub x28, x28, x16
+    sll x28, x28, x10
+    or x28, x28, x17
+    srli x28, x15, 1905
+    xori x28, x27, -1050
+    or x28, x28, x27
+    ori x28, x26, -1396
+    and x28, x28, x30
+    add x28, x28, x11
+    andi x28, x16, -337
+    andi x28, x18, -52
+    add x28, x28, x20
+    and x28, x28, x23
+    or x28, x28, x10
+    sll x28, x28, x11
+    srli x28, x19, -1786
+    or x28, x28, x21
+    addi x28, x10, -118
+    ori x28, x20, -2046
+    mul x28, x28, x18
+    addi x28, x24, 759
+    mul x28, x28, x15
+    andi x28, x11, 1736
+    addi x28, x26, -188
+    addi x28, x17, -1627
+    slli x28, x31, 551
+    sub x28, x28, x26
+    sltiu x28, x17, -1238
+    sub x28, x28, x30
+    sub x28, x28, x13
+    add x28, x28, x16
+    slt x28, x28, x29
+    mul x28, x28, x25
+    sra x28, x28, x16
+    xor x28, x28, x29
+    or x28, x28, x26
+    mul x28, x28, x14
+    bgeu x28, x13, label_38
+label_38:
+    srai x28, x10, 1049
+    sub x28, x28, x20
+    sub x28, x28, x16
+    andi x28, x23, -1749
+    jalr x28, x25, 1327
+    addi x28, x20, 768
+    ori x28, x22, -315
+    and x28, x28, x31
+    sub x28, x28, x22
+    srai x28, x27, 313
+    ori x28, x13, -814
+    sra x28, x28, x12
+    xori x28, x21, -23
+    sub x28, x28, x18
+    or x28, x28, x11
+    addi x28, x19, 1453
+    addi x28, x30, 1210
+    addi x28, x12, -645
+    sub x28, x28, x14
+    andi x28, x24, -1968
+    add x28, x28, x31
+    ori x28, x21, 280
+    and x28, x28, x18
+    ori x28, x14, -419
+    sub x28, x28, x15
+    xor x28, x28, x17
+    mul x28, x28, x25
+    andi x28, x15, -754
+    addi x28, x21, -563
+    and x28, x28, x11
+    srli x28, x10, -1734
+    addi x28, x17, -546
+    addi x28, x21, 447
+    sub x28, x28, x14
+    or x28, x28, x22
+    xori x28, x22, -678
+    slt x28, x28, x25
+    xori x28, x15, -175
+    mul x28, x28, x23
+    addi x28, x26, 1527
+    addi x28, x15, 506
+    srl x28, x28, x22
+    slli x28, x14, -1802
+    addi x28, x11, 998
+    xor x28, x28, x17
+    andi x28, x21, -2031
+    mul x28, x28, x16
+    sra x28, x28, x23
+    or x28, x28, x15
+    mul x28, x28, x10
+    andi x28, x17, 1447
+    slli x28, x20, -552
+    add x28, x28, x30
+    and x28, x28, x22
+    xori x28, x18, 1798
+    slli x28, x26, -483
+    mul x28, x28, x26
+    addi x28, x31, 1999
+    srl x28, x28, x16
+    bltu x28, x26, label_39
+label_39:
+    sub x28, x28, x11
+    ori x28, x30, -892
+    sub x28, x28, x15
+    addi x28, x18, -1933
+    addi x28, x27, -527
+    slli x28, x30, 1447
+    add x28, x28, x10
+    mul x28, x28, x31
+    add x28, x28, x13
+    add x28, x28, x19
+    sub x28, x28, x25
+    addi x28, x19, -848
+    srli x28, x19, 1298
+    sra x28, x28, x12
+    xor x28, x28, x22
+    slli x28, x15, 1991
+    mul x28, x28, x10
+    xor x28, x28, x20
+    slt x28, x28, x27
+    sltu x28, x28, x16
+    add x28, x28, x10
+    and x28, x28, x21
+    addi x28, x11, -1546
+    mul x28, x28, x20
+    sub x28, x28, x16
+    sll x28, x28, x18
+    sltiu x28, x13, -9
+    sub x28, x28, x22
+    slli x28, x13, -642
+    xori x28, x11, 861
+    add x28, x28, x17
+    add x28, x28, x15
+    or x28, x28, x31
+    slli x28, x19, -1002
+    ori x28, x29, -628
+    add x28, x28, x12
+    srai x28, x16, 834
+    srli x28, x13, 743
+    mul x28, x28, x10
+    ori x28, x14, 15
+    sll x28, x28, x16
+    xor x28, x28, x20
+    xori x28, x27, -1549
+    srl x28, x28, x16
+    and x28, x28, x11
+    sra x28, x28, x15
+    add x28, x28, x22
+    sub x28, x28, x16
+    xori x28, x22, 421
+    addi x28, x15, -1315
+    andi x28, x10, 1611
+    ori x28, x24, -1138
+    slti x28, x27, 592
+    or x28, x28, x27
+    ori x28, x11, 1893
+    and x28, x28, x30
+    mul x28, x28, x25
+    lw x28, 72(x3)
+    or x28, x28, x15
+    or x28, x28, x22
+    srli x28, x18, 779
+    andi x28, x24, 1771
+    add x28, x28, x15
+    srl x28, x28, x20
+    srli x28, x10, -1610
+    mul x28, x28, x11
+    sub x28, x28, x11
+    sub x28, x28, x23
+    addi x28, x19, -1415
+    mul x28, x28, x10
+    srli x28, x11, 487
+    ori x28, x16, 677
+    addi x28, x23, -243
+    addi x28, x16, -621
+    and x28, x28, x10
+    xori x28, x16, 6
+    ori x28, x19, -1937
+    add x28, x28, x13
+    jalr x28, x14, 145
+    sltiu x28, x25, 1098
+    addi x28, x30, -594
+    jalr x28, x20, 1816
+    xor x28, x28, x15
+    sub x28, x28, x16
+    andi x28, x23, -1254
+    ori x28, x14, 930
+    xori x28, x15, 1944
+    srli x28, x31, -38
+    mul x28, x28, x25
+    addi x28, x11, -490
+    and x28, x28, x26
+    slli x28, x14, 1643
+    sltu x28, x28, x17
+    or x28, x28, x22
+    ori x28, x18, -1907
+    add x28, x28, x19
+    sub x28, x28, x23
+    srai x28, x14, -2029
+    andi x28, x10, -1143
+    and x28, x28, x20
+    sltiu x28, x22, -1106
+    add x28, x28, x21
+    and x28, x28, x31
+    add x28, x28, x24
+    ori x28, x10, 1626
+    lw x28, 96(x3)
+    sra x28, x28, x17
+    srli x28, x20, -2033
+    addi x28, x16, 1153
+    and x28, x28, x13
+    mul x28, x28, x29
+    sra x28, x28, x26
+    srl x28, x28, x16
+    srl x28, x28, x21
+    mul x28, x28, x18
+    sltu x28, x28, x10
+    add x28, x28, x20
+    ori x28, x21, -851
+    sub x28, x28, x24
+    xori x28, x17, 1551
+    andi x28, x14, 1533
+    slli x28, x20, -1571
+    add x28, x28, x18
+    srli x28, x13, 1955
+    mul x28, x28, x30
+    srli x28, x25, 1772
+    srai x28, x24, -1863
+    addi x28, x20, 314
+    addi x28, x17, 1071
+    srl x28, x28, x29
+    andi x28, x21, -1271
+    ori x28, x16, 1161
+    sub x28, x28, x20
+    add x28, x28, x10
+    slt x28, x28, x17
+    sub x28, x28, x18
+    andi x28, x21, -1515
+    sub x28, x28, x31
+    or x28, x28, x31
+    andi x28, x18, 986
+    sltiu x28, x12, -1103
+    mul x28, x28, x27
+    srl x28, x28, x11
+    sub x28, x28, x11
+    mul x28, x28, x15
+    sra x28, x28, x11
+    srl x28, x28, x29
+    or x28, x28, x13
+    slti x28, x30, 147
+    sll x28, x28, x14
+    sltu x28, x28, x17
+    sra x28, x28, x18
+    slt x28, x28, x30
+    sub x28, x28, x12
+    xor x28, x28, x24
+    sll x28, x28, x11
+    srli x28, x15, -1628
+    mul x28, x28, x16
+    srli x28, x15, -1555
+    sub x28, x28, x11
+    addi x28, x12, 531
+    jalr x28, x23, 1189
+    or x28, x28, x31
+    slli x28, x22, 405
+    lw x28, 96(x3)
+    srli x28, x24, -628
+    mul x28, x28, x17
+    xori x28, x30, -1539
+    and x28, x28, x29
+    sub x28, x28, x16
+    mul x28, x28, x16
+    or x28, x28, x27
+    xor x28, x28, x19
+    mul x28, x28, x25
+    sra x28, x28, x11
+    addi x28, x25, 187
+    sll x28, x28, x26
+    andi x28, x26, 712
+    addi x28, x14, 1033
+    sub x28, x28, x31
+    srl x28, x28, x23
+    ori x28, x20, 1268
+    add x28, x28, x17
+    sub x28, x28, x12
+    add x28, x28, x30
+    mul x28, x28, x31
+    and x28, x28, x14
+    add x28, x28, x29
+    xor x28, x28, x30
+    add x28, x28, x27
+    xori x28, x25, -88
+    mul x28, x28, x31
+    srl x28, x28, x10
+    slt x28, x28, x27
+    sll x28, x28, x30
+    sll x28, x28, x12
+    slti x28, x14, 1514
+    lw x28, 92(x3)
+    sll x28, x28, x11
+    ori x28, x16, -1934
+    xor x28, x28, x27
+    sltiu x28, x27, -1251
+    xori x28, x27, 1165
+    and x28, x28, x15
+    addi x28, x17, -332
+    mul x28, x28, x26
+    mul x28, x28, x18
+    xor x28, x28, x27
+    or x28, x28, x24
+    xor x28, x28, x11
+    ori x28, x10, -709
+    sra x28, x28, x13
+    srl x28, x28, x29
+    sub x28, x28, x21
+    xori x28, x16, -490
+    addi x28, x27, -58
+    slli x28, x25, 806
+    ori x28, x21, 1756
+    add x28, x28, x13
+    add x28, x28, x11
+    sra x28, x28, x19
+    addi x28, x24, 956
+    ori x28, x20, -702
+    mul x28, x28, x13
+    or x28, x28, x18
+    add x28, x28, x31
+    mul x28, x28, x29
+    andi x28, x11, 1589
+    add x28, x28, x23
+    srai x28, x25, -5
+    and x28, x28, x22
+    srl x28, x28, x12
+    or x28, x28, x11
+    mul x28, x28, x12
+    xor x28, x28, x23
+    sub x28, x28, x11
+    lw x28, 12(x3)
+    mul x28, x28, x12
+    slli x28, x18, -1801
+    sltu x28, x28, x21
+    add x28, x28, x16
+    addi x28, x15, -132
+    srl x28, x28, x15
+    srl x28, x28, x15
+    add x28, x28, x17
+    andi x28, x18, 364
+    andi x28, x13, 1611
+    ori x28, x30, -963
+    andi x28, x23, 753
+    sub x28, x28, x15
+    srl x28, x28, x22
+    sub x28, x28, x15
+    sra x28, x28, x30
+    srai x28, x20, -1134
+    xori x28, x14, -919
+    srl x28, x28, x30
+    mul x28, x28, x15
+    xori x28, x22, -103
+    mul x28, x28, x26
+    slli x28, x16, -1126
+    sub x28, x28, x24
+    srai x28, x15, 100
+    sub x28, x28, x12
+    addi x28, x30, -1618
+    xori x28, x23, 1114
+    andi x28, x30, -493
+    sub x28, x28, x24
+    addi x28, x10, 1569
+    slli x28, x29, -1843
+    srl x28, x28, x15
+    sub x28, x28, x13
+    xor x28, x28, x13
+    andi x28, x27, 2027
+    andi x28, x26, -163
+    srl x28, x28, x10
+    jalr x28, x26, 912
+    mul x28, x28, x17
+    addi x28, x17, -1698
+    add x28, x28, x11
+    sra x28, x28, x22
+    jalr x28, x10, -1631
+    srl x28, x28, x17
+    add x28, x28, x30
+    sub x28, x28, x24
+    sub x28, x28, x20
+    and x28, x28, x12
+    mul x28, x28, x23
+    mul x28, x28, x18
+    addi x28, x22, 1076
+    add x28, x28, x11
+    add x28, x28, x29
+    addi x28, x15, 1915
+    xor x28, x28, x30
+    srai x28, x26, 726
+    add x28, x28, x17
+    lw x28, 112(x3)
+    xori x28, x25, 135
+    srai x28, x25, 1865
+    addi x28, x13, -362
+    addi x28, x23, -1962
+    or x28, x28, x15
+    add x28, x28, x20
+    sub x28, x28, x12
+    sll x28, x28, x14
+    sll x28, x28, x22
+    or x28, x28, x14
+    ori x28, x13, 747
+    lw x28, 12(x3)
+    srl x28, x28, x21
+    andi x28, x21, 1999
+    sub x28, x28, x15
+    add x28, x28, x29
+    addi x28, x10, -1385
+    andi x28, x19, -1955
+    add x28, x28, x22
+    addi x28, x30, -1649
+    sll x28, x28, x30
+    ori x28, x18, -1574
+    sub x28, x28, x17
+    or x28, x28, x31
+    or x28, x28, x22
+    sub x28, x28, x25
+    xori x28, x13, 589
+    ori x28, x29, 904
+    and x28, x28, x11
+    add x28, x28, x23
+    srai x28, x25, -1135
+    addi x28, x18, 763
+    addi x28, x26, 346
+    sra x28, x28, x25
+    slli x28, x15, 1640
+    andi x28, x15, 1681
+    srai x28, x10, -1887
+    add x28, x28, x11
+    sub x28, x28, x10
+    and x28, x28, x30
+    addi x28, x31, -1805
+    add x28, x28, x31
+    srl x28, x28, x22
+    sltiu x28, x10, 367
+    add x28, x28, x20
+    or x28, x28, x24
+    mul x28, x28, x16
+    mul x28, x28, x27
+    andi x28, x30, 298
+    xori x28, x24, 746
+    srli x28, x29, -1872
+    mul x28, x28, x25
+    addi x28, x23, -538
+    mul x28, x28, x24
+    slti x28, x10, -1568
+    or x28, x28, x31
+    addi x28, x25, 722
+    xori x28, x14, 162
+    sub x28, x28, x14
+    mul x28, x28, x29
+    slli x28, x31, -1731
+    sub x28, x28, x24
+    srl x28, x28, x19
+    sub x28, x28, x23
+    and x28, x28, x31
+    addi x28, x25, -1238
+    srli x28, x19, 1832
+    slti x28, x21, 1990
+    add x28, x28, x16
+    or x28, x28, x30
+    xor x28, x28, x13
+    xor x28, x28, x29
+    andi x28, x19, -595
+    mul x28, x28, x24
+    ori x28, x18, 137
+    sub x28, x28, x22
+    mul x28, x28, x22
+    xor x28, x28, x24
+    slt x28, x28, x29
+    addi x28, x13, -1959
+    sub x28, x28, x29
+    add x28, x28, x10
+    ori x28, x18, -333
+    sll x28, x28, x13
+    and x28, x28, x22
+    xori x28, x16, -112
+    mul x28, x28, x14
+    sll x28, x28, x23
+    xori x28, x12, 217
+    srl x28, x28, x22
+    and x28, x28, x22
+    sra x28, x28, x12
+    sll x28, x28, x14
+    ori x28, x20, 994
+    srl x28, x28, x26
+    srli x28, x27, 1395
+    srai x28, x29, -1858
+    slti x28, x25, 1578
+    srl x28, x28, x18
+    and x28, x28, x20
+    srai x28, x26, 635
+    sub x28, x28, x13
+    srai x28, x25, 433
+    xor x28, x28, x21
+    ori x28, x24, 1202
+    add x28, x28, x26
+    add x28, x28, x20
+    xori x28, x21, 1526
+    sub x28, x28, x22
+    slt x28, x28, x15
+    sub x28, x28, x15
+    addi x28, x19, 1707
+    and x28, x28, x13
+    sra x28, x28, x13
+    ori x28, x15, 423
+    or x28, x28, x21
+    xori x28, x12, -657
+    sll x28, x28, x30
+    add x28, x28, x18
+    ori x28, x29, 1236
+    srli x28, x14, 214
+    or x28, x28, x18
+    sub x28, x28, x31
+    lw x28, 4(x3)
+    add x28, x28, x22
+    xori x28, x27, 127
+    mul x28, x28, x13
+    xori x28, x15, -643
+    addi x28, x20, 891
+    jalr x28, x19, 31
+    srl x28, x28, x27
+    sltu x28, x28, x11
+    sub x28, x28, x13
+    addi x28, x23, 790
+    slli x28, x30, 769
+    sra x28, x28, x21
+    xor x28, x28, x12
+    sra x28, x28, x16
+    slli x28, x16, -655
+    sll x28, x28, x20
+    srli x28, x27, -265
+    sub x28, x28, x24
+    ori x28, x23, -335
+    slt x28, x28, x14
+    sll x28, x28, x17
+    add x28, x28, x27
+    jalr x28, x18, 87
+    andi x28, x19, 283
+    sub x28, x28, x27
+    or x28, x28, x18
+    sub x28, x28, x11
+    sll x28, x28, x25
+    add x28, x28, x20
+    addi x28, x27, -2007
+    xor x28, x28, x15
+    ori x28, x29, 1892
+    sll x28, x28, x22
+    srai x28, x30, 1174
+    addi x28, x13, 304
+    sra x28, x28, x15
+    srli x28, x12, 688
+    sll x28, x28, x22
+    add x28, x28, x19
+    sra x28, x28, x15
+    mul x28, x28, x31
+    sll x28, x28, x25
+    sub x28, x28, x11
+    slli x28, x30, 824
+    and x28, x28, x26
+    slt x28, x28, x20
+    and x28, x28, x11
+    sll x28, x28, x16
+    sub x28, x28, x11
+    ori x28, x26, -63
+    add x28, x28, x10
+    addi x28, x29, 1775
+    ori x28, x16, -213
+    or x28, x28, x18
+    xor x28, x28, x11
+    andi x28, x17, -1227
+    srai x28, x15, -707
+    mul x28, x28, x10
+    sub x28, x28, x13
+    ori x28, x10, 979
+    andi x28, x14, -481
+    sll x28, x28, x14
+    xori x28, x19, -1710
+    mul x28, x28, x19
+    slt x28, x28, x11
+    sub x28, x28, x22
+    ori x28, x13, -1757
+    mul x28, x28, x10
+    mul x28, x28, x11
+    mul x28, x28, x31
+    sll x28, x28, x16
+    andi x28, x18, -214
+    slti x28, x17, -1362
+    and x28, x28, x13
+    sw x28, 16(x3)
+    add x28, x28, x21
+    sub x28, x28, x20
+    sub x28, x28, x13
+    mul x28, x28, x17
+    mul x28, x28, x25
+    mul x28, x28, x10
+    sll x28, x28, x18
+    add x28, x28, x23
+    add x28, x28, x25
+    andi x28, x22, 728
+    ori x28, x19, 927
+    addi x28, x11, -1705
+    slli x28, x20, -712
+    slt x28, x28, x26
+    andi x28, x18, -1946
+    xor x28, x28, x29
+    addi x28, x23, -488
+    addi x28, x15, -144
+    and x28, x28, x19
+    xori x28, x15, -1578
+    or x28, x28, x19
+    slli x28, x19, -1660
+    ori x28, x16, 196
+    srl x28, x28, x12
+    ori x28, x14, 428
+    xori x28, x17, -591
+    add x28, x28, x18
+    add x28, x28, x30
+    sw x28, 104(x3)
+    xor x28, x28, x11
+    ori x28, x24, -1747
+    srl x28, x28, x18
+    sub x28, x28, x18
+    and x28, x28, x15
+    srai x28, x13, 1501
+    sw x28, 20(x3)
+    addi x28, x19, 87
+    add x28, x28, x20
+    sub x28, x28, x23
+    addi x28, x29, 2040
+    sltu x28, x28, x17
+    add x28, x28, x19
+    xor x28, x28, x15
+    srai x28, x10, 405
+    slti x28, x12, -714
+    xori x28, x23, -903
+    mul x28, x28, x24
+    add x28, x28, x16
+    andi x28, x24, -1845
+    sll x28, x28, x25
+    mul x28, x28, x21
+    xor x28, x28, x18
+    mul x28, x28, x25
+    xori x28, x24, 1881
+    and x28, x28, x22
+    sub x28, x28, x20
+    xori x28, x30, 333
+    srl x28, x28, x18
+    xor x28, x28, x16
+    sub x28, x28, x25
+    ori x28, x19, 537
+    xori x28, x14, -1943
+    slli x28, x22, -1426
+    and x28, x28, x22
+    srli x28, x30, 556
+    add x28, x28, x11
+    add x28, x28, x29
+    xor x28, x28, x23
+    srli x28, x30, 424
+    srli x28, x16, -507
+    xor x28, x28, x11
+    sub x28, x28, x29
+    sltiu x28, x24, 1130
+    add x28, x28, x18
+    xori x28, x27, -1624
+    add x28, x28, x29
+    mul x28, x28, x20
+    or x28, x28, x31
+    add x28, x28, x21
+    mul x28, x28, x20
+    srai x28, x18, -1985
+    and x28, x28, x16
+    xori x28, x12, 517
+    add x28, x28, x19
+    srai x28, x19, -806
+    add x28, x28, x31
+    xori x28, x19, -1731
+    ori x28, x22, -498
+    sw x28, 52(x3)
+    ori x28, x17, -147
+    addi x28, x25, -746
+    or x28, x28, x13
+    and x28, x28, x22
+    ori x28, x10, -1248
+    or x28, x28, x25
+    sll x28, x28, x21
+    sra x28, x28, x17
+    srli x28, x24, 1923
+    and x28, x28, x26
+    srl x28, x28, x29
+    addi x28, x22, -621
+    mul x28, x28, x24
+    add x28, x28, x14
+    mul x28, x28, x14
+    sll x28, x28, x11
+    srai x28, x14, 2025
+    addi x28, x18, 766
+    or x28, x28, x24
+    mul x28, x28, x21
+    add x28, x28, x23
+    ori x28, x16, 833
+    andi x28, x16, 99
+    xor x28, x28, x13
+    srl x28, x28, x29
+    or x28, x28, x23
+    mul x28, x28, x25
+    addi x28, x16, 1404
+    srl x28, x28, x20
+    sub x28, x28, x14
+    andi x28, x24, 833
+    addi x28, x16, 264
+    xor x28, x28, x16
+    sub x28, x28, x30
+    xor x28, x28, x26
+    andi x28, x22, 664
+    andi x28, x12, -24
+    sub x28, x28, x24
+    srl x28, x28, x29
+    sll x28, x28, x29
+    mul x28, x28, x13
+    add x28, x28, x27
+    xori x28, x16, -76
+    add x28, x28, x26
+    slt x28, x28, x10
+    sub x28, x28, x17
+    or x28, x28, x14
+    and x28, x28, x24
+    add x28, x28, x31
+    slli x28, x27, 367
+    srai x28, x15, 21
+    xor x28, x28, x30
+    andi x28, x13, 319
+    add x28, x28, x22
+    add x28, x28, x18
+    srli x28, x29, -1936
+    srai x28, x11, 925
+    slti x28, x19, 1291
+    addi x28, x29, 1034
+    xori x28, x30, -1890
+    ori x28, x20, 1946
+    addi x28, x30, 1562
+    slt x28, x28, x26
+    srl x28, x28, x22
+    mul x28, x28, x17
+    add x28, x28, x13
+    srl x28, x28, x31
+    and x28, x28, x17
+    sub x28, x28, x11
+    sub x28, x28, x21
+    andi x28, x15, 1377
+    jalr x28, x22, 596
+    addi x28, x10, -684
+    lw x28, 88(x3)
+    or x28, x28, x17
+    mul x28, x28, x15
+    addi x28, x30, 1058
+    mul x28, x28, x29
+    xori x28, x11, 2004
+    add x28, x28, x18
+    add x28, x28, x26
+    sub x28, x28, x29
+    sub x28, x28, x14
+    ori x28, x13, -290
+    sll x28, x28, x29
+    slli x28, x19, 817
+    srai x28, x25, 392
+    sll x28, x28, x16
+    mul x28, x28, x30
+    sub x28, x28, x29
+    xori x28, x26, 1486
+    ori x28, x26, 1609
+    addi x28, x14, -1333
+    xor x28, x28, x12
+    srli x28, x14, 872
+    add x28, x28, x31
+    mul x28, x28, x18
+    add x28, x28, x24
+    xor x28, x28, x27
+    addi x28, x20, 1721
+    add x28, x28, x11
+    sltu x28, x28, x20
+    andi x28, x23, 546
+    or x28, x28, x12
+    slli x28, x10, -1885
+    sub x28, x28, x25
+    addi x28, x18, 845
+    mul x28, x28, x13
+    add x28, x28, x12
+    andi x28, x30, -574
+    sub x28, x28, x24
+    sub x28, x28, x25
+    or x28, x28, x11
+    srl x28, x28, x26
+    sra x28, x28, x12
+    mul x28, x28, x16
+    addi x28, x14, 1396
+    sub x28, x28, x19
+    srl x28, x28, x11
+    addi x28, x14, 179
+    ori x28, x25, 1602
+    srl x28, x28, x18
+    sll x28, x28, x25
+    lw x28, 68(x3)
+    xori x28, x14, 463
+    addi x28, x15, -1800
+    or x28, x28, x18
+    and x28, x28, x12
+    slli x28, x11, 1630
+    addi x28, x17, 1055
+    sub x28, x28, x15
+    slli x28, x23, 174
+    xor x28, x28, x15
+    sub x28, x28, x10
+    or x28, x28, x27
+    add x28, x28, x11
+    xori x28, x29, -1985
+    addi x28, x12, 336
+    srl x28, x28, x25
+    slli x28, x16, -441
+    andi x28, x15, -315
+    ori x28, x10, 523
+    addi x28, x22, 811
+    mul x28, x28, x30
+    add x28, x28, x17
+    srai x28, x14, -693
+    add x28, x28, x14
+    mul x28, x28, x26
+    xori x28, x16, -1783
+    xor x28, x28, x25
+    ori x28, x27, 1778
+    andi x28, x10, -1655
+    srl x28, x28, x26
+    mul x28, x28, x24
+    mul x28, x28, x15
+    andi x28, x13, -1543
+    addi x28, x26, 333
+    and x28, x28, x22
+    ori x28, x26, 72
+    srai x28, x15, 1841
+    sra x28, x28, x13
+    ori x28, x23, 333
+    or x28, x28, x29
+    mul x28, x28, x23
+    add x28, x28, x21
+    slli x28, x27, 779
+    addi x28, x12, 392
+    andi x28, x20, -1883
+    add x28, x28, x25
+    addi x28, x12, -1675
+    add x28, x28, x20
+    slli x28, x22, 1036
+    andi x28, x20, 467
+    xor x28, x28, x18
+    xor x28, x28, x25
+    srl x28, x28, x10
+    xor x28, x28, x16
+    mul x28, x28, x12
+    xori x28, x11, -1162
+    slli x28, x29, -119
+    sltu x28, x28, x26
+    sub x28, x28, x27
+    addi x28, x23, -1732
+    slli x28, x22, 445
+    slli x28, x25, -1082
+    add x28, x28, x24
+    sub x28, x28, x18
+    xor x28, x28, x15
+    slli x28, x20, 326
+    sub x28, x28, x12
+    add x28, x28, x12
+    xori x28, x11, -1026
+    xor x28, x28, x11
+    or x28, x28, x24
+    sub x28, x28, x24
+    sub x28, x28, x20
+    addi x28, x20, 277
+    andi x28, x13, -1742
+    sub x28, x28, x23
+    sll x28, x28, x17
+    sub x28, x28, x13
+    xor x28, x28, x22
+    addi x28, x24, 588
+    sra x28, x28, x26
+    sub x28, x28, x13
+    sll x28, x28, x10
+    xori x28, x21, -307
+    or x28, x28, x14
+    xori x28, x11, 1230
+    addi x28, x16, -88
+    add x28, x28, x25
+    mul x28, x28, x16
+    add x28, x28, x13
+    srl x28, x28, x17
+    xor x28, x28, x20
+    xori x28, x19, 852
+    mul x28, x28, x21
+    xori x28, x31, 1746
+    ori x28, x21, 310
+    sub x28, x28, x14
+    andi x28, x13, 797
+    and x28, x28, x29
+    or x28, x28, x10
+    addi x28, x15, 1043
+    srli x28, x31, -1723
+    sll x28, x28, x11
+    addi x28, x30, -394
+    slti x28, x20, -1779
+    ori x28, x17, -1789
+    or x28, x28, x23
+    srli x28, x13, 950
+    xor x28, x28, x17
+    srl x28, x28, x30
+    addi x28, x11, -1202
+    addi x28, x13, 1724
+    sll x28, x28, x26
+    srli x28, x26, 883
+    mul x28, x28, x12
+    slli x28, x16, -744
+    addi x28, x23, 880
+    srl x28, x28, x15
+    and x28, x28, x10
+    and x28, x28, x26
+    sltiu x28, x13, 722
+    add x28, x28, x10
+    slt x28, x28, x15
+    sub x28, x28, x14
+    sub x28, x28, x24
+    or x28, x28, x31
+    or x28, x28, x25
+    xori x28, x12, -783
+    sll x28, x28, x29
+    add x28, x28, x25
+    sub x28, x28, x15
+    ori x28, x22, 299
+    srl x28, x28, x14
+    xori x28, x31, 1168
+    andi x28, x12, 1601
+    xor x28, x28, x14
+    add x28, x28, x12
+    srl x28, x28, x25
+    ori x28, x20, -412
+    addi x28, x27, 343
+    sub x28, x28, x29
+    ori x28, x22, -639
+    ori x28, x27, -1490
+    srl x28, x28, x19
+    xor x28, x28, x19
+    srli x28, x22, 646
+    and x28, x28, x15
+    sra x28, x28, x18
+    sltiu x28, x22, 1053
+    ori x28, x10, 2034
+    addi x28, x26, -1774
+    xor x28, x28, x27
+    xor x28, x28, x21
+    andi x28, x29, -1633
+    mul x28, x28, x20
+    ori x28, x29, -197
+    ori x28, x26, -1905
+    add x28, x28, x29
+    sub x28, x28, x10
+    and x28, x28, x29
+    mul x28, x28, x19
+    mul x28, x28, x14
+    or x28, x28, x26
+    or x28, x28, x13
+    add x28, x28, x30
+    xori x28, x22, -1986
+    sltu x28, x28, x24
+    sub x28, x28, x25
+    srai x28, x30, 1014
+    sub x28, x28, x12
+    ori x28, x23, -1399
+    and x28, x28, x23
+    slti x28, x12, -251
+    andi x28, x16, -445
+    or x28, x28, x27
+    xori x28, x18, 1829
+    and x28, x28, x11
+    or x28, x28, x23
+    add x28, x28, x30
+    mul x28, x28, x26
+    xor x28, x28, x20
+    add x28, x28, x18
+    mul x28, x28, x15
+    sll x28, x28, x18
+    or x28, x28, x25
+    xori x28, x22, 1713
+    sra x28, x28, x13
+    xor x28, x28, x24
+    and x28, x28, x22
+    and x28, x28, x31
+    andi x28, x20, -837
+    or x28, x28, x20
+    or x28, x28, x18
+    srli x28, x23, -1415
+    sra x28, x28, x16
+    ori x28, x13, 1608
+    ori x28, x22, -719
+    srl x28, x28, x29
+    and x28, x28, x12
+    sub x28, x28, x13
+    and x28, x28, x20
+    add x28, x28, x25
+    xori x28, x10, -635
+    sra x28, x28, x21
+    sub x28, x28, x20
+    and x28, x28, x27
+    add x28, x28, x14
+    mul x28, x28, x12
+    or x28, x28, x29
+    and x28, x28, x20
+    sub x28, x28, x24
+    mul x28, x28, x13
+    sra x28, x28, x30
+    or x28, x28, x12
+    sltiu x28, x16, -1531
+    mul x28, x28, x20
+    xori x28, x26, -2044
+    addi x28, x14, -605
+    and x28, x28, x31
+    slt x28, x28, x17
+    lw x28, 108(x3)
+    andi x28, x30, 1709
+    or x28, x28, x14
+    sub x28, x28, x16
+    srl x28, x28, x13
+    xor x28, x28, x19
+    and x28, x28, x22
+    ori x28, x27, -1650
+    xor x28, x28, x11
+    sub x28, x28, x31
+    addi x28, x27, 1238
+    addi x28, x31, 1581
+    lw x28, 100(x3)
+    srli x28, x23, 267
+    mul x28, x28, x20
+    addi x28, x31, 1144
+    and x28, x28, x23
+    and x28, x28, x30
+    xori x28, x15, -909
+    slli x28, x20, -1640
+    mul x28, x28, x14
+    addi x28, x31, -1067
+    sra x28, x28, x15
+    slli x28, x31, -174
+    andi x28, x16, 9
+    mul x28, x28, x16
+    ori x28, x21, 178
+    sll x28, x28, x10
+    srli x28, x14, -1585
+    srai x28, x30, -59
+    slli x28, x10, 329
+    sub x28, x28, x23
+    or x28, x28, x24
+    mul x28, x28, x14
+    sltu x28, x28, x12
+    slli x28, x29, -1511
+    ori x28, x29, -256
+    srl x28, x28, x15
+    sub x28, x28, x12
+    srai x28, x16, 1183
+    sub x28, x28, x17
+    addi x28, x15, -1546
+    sub x28, x28, x22
+    mul x28, x28, x18
+    or x28, x28, x11
+    and x28, x28, x13
+    and x28, x28, x31
+    and x28, x28, x25
+    addi x28, x25, 262
+    add x28, x28, x27
+    and x28, x28, x22
+    mul x28, x28, x26
+    xori x28, x30, 1367
+    add x28, x28, x23
+    slli x28, x13, 1870
+    xor x28, x28, x10
+    xori x28, x29, -1577
+    addi x28, x13, 313
+    xor x28, x28, x31
+    sra x28, x28, x31
+    srl x28, x28, x16
+    ori x28, x19, -170
+    xor x28, x28, x27
+    add x28, x28, x15
+    srl x28, x28, x21
+    addi x28, x31, 785
+    slli x28, x17, -757
+    mul x28, x28, x30
+    add x28, x28, x25
+    or x28, x28, x31
+    srai x28, x21, 1339
+    mul x28, x28, x22
+    sw x28, 64(x3)
+    sub x28, x28, x21
+    srli x28, x30, 1553
+    xor x28, x28, x12
+    xori x28, x17, 315
+    mul x28, x28, x18
+    srai x28, x14, 255
+    ori x28, x27, 1326
+    and x28, x28, x21
+    slli x28, x31, 1281
+    addi x28, x10, -1952
+    add x28, x28, x19
+    sra x28, x28, x18
+    add x28, x28, x13
+    or x28, x28, x27
+    slli x28, x14, -422
+    slt x28, x28, x15
+    addi x28, x20, 853
+    ori x28, x19, -460
+    add x28, x28, x11
+    addi x28, x12, 665
+    mul x28, x28, x17
+    sll x28, x28, x31
+    srl x28, x28, x24
+    addi x28, x23, -1122
+    mul x28, x28, x18
+    add x28, x28, x31
+    mul x28, x28, x13
+    and x28, x28, x17
+    sll x28, x28, x11
+    sw x28, 0(x3)
+    srli x28, x22, -667
+    sra x28, x28, x20
+    or x28, x28, x11
+    xori x28, x24, -1729
+    sra x28, x28, x31
+    andi x28, x17, 1084
+    sub x28, x28, x22
+    slt x28, x28, x16
+    mul x28, x28, x25
+    mul x28, x28, x26
+    mul x28, x28, x29
+    addi x28, x10, -1112
+    sub x28, x28, x22
+    srli x28, x19, 2024
+    mul x28, x28, x20
+    ori x28, x12, -1620
+    sub x28, x28, x30
+    mul x28, x28, x20
+    and x28, x28, x25
+    and x28, x28, x20
+    xor x28, x28, x24
+    or x28, x28, x23
+    addi x28, x11, 850
+    addi x28, x19, -793
+    ori x28, x12, -1569
+    addi x28, x31, 559
+    xori x28, x29, -471
+    mul x28, x28, x15
+    sub x28, x28, x14
+    and x28, x28, x26
+    mul x28, x28, x25
+    sra x28, x28, x22
+    xori x28, x11, 96
+    or x28, x28, x20
+    sra x28, x28, x13
+    xori x28, x17, 833
+    xori x28, x29, 1887
+    sub x28, x28, x24
+    mul x28, x28, x27
+    srai x28, x18, 2033
+    xori x28, x23, -870
+    add x28, x28, x22
+    andi x28, x16, -1403
+    addi x28, x19, 1571
+    ori x28, x26, 1468
+    sll x28, x28, x14
+    xori x28, x24, -5
+    srai x28, x11, -1059
+    add x28, x28, x17
+    sll x28, x28, x27
+    sub x28, x28, x19
+    addi x28, x31, -1293
+    addi x28, x18, 1779
+    srli x28, x23, -518
+    sub x28, x28, x29
+    mul x28, x28, x12
+    mul x28, x28, x18
+    srli x28, x25, 357
+    addi x28, x19, -1491
+    sub x28, x28, x20
+    xor x28, x28, x21
+    srai x28, x15, -636
+    mul x28, x28, x27
+    and x28, x28, x25
+    or x28, x28, x16
+    and x28, x28, x21
+    sub x28, x28, x12
+    ori x28, x19, 272
+    sub x28, x28, x11
+    mul x28, x28, x20
+    sltu x28, x28, x10
+    mul x28, x28, x13
+    sltiu x28, x15, 2008
+    mul x28, x28, x26
+    slli x28, x11, -1267
+    mul x28, x28, x25
+    sub x28, x28, x15
+    sub x28, x28, x23
+    xori x28, x29, -777
+    mul x28, x28, x24
+    sra x28, x28, x16
+    srl x28, x28, x10
+    sltu x28, x28, x17
+    slli x28, x18, 368
+    xor x28, x28, x27
+    add x28, x28, x18
+    and x28, x28, x12
+    srai x28, x21, 1102
+    add x28, x28, x26
+    srl x28, x28, x23
+    sub x28, x28, x27
+    mul x28, x28, x25
+    add x28, x28, x26
+    xori x28, x19, -552
+    ori x28, x14, 1669
+    ori x28, x21, -96
+    mul x28, x28, x17
+    xor x28, x28, x25
+    mul x28, x28, x20
+    mul x28, x28, x31
+    xor x28, x28, x19
+    and x28, x28, x15
+    or x28, x28, x27
+    srli x28, x16, 1444
+    ori x28, x17, -2041
+    andi x28, x14, -261
+    sltiu x28, x22, -491
+    xori x28, x23, 759
+    mul x28, x28, x18
+    sra x28, x28, x13
+    add x28, x28, x21
+    sra x28, x28, x15
+    and x28, x28, x15
+    add x28, x28, x19
+    ori x28, x18, -1522
+    or x28, x28, x11
+    addi x28, x10, -381
+    sub x28, x28, x22
+    or x28, x28, x30
+    andi x28, x22, 558
+    add x28, x28, x27
+    slt x28, x28, x26
+    add x28, x28, x17
+    srl x28, x28, x20
+    mul x28, x28, x14
+    addi x28, x30, 1129
+    mul x28, x28, x24
+    xor x28, x28, x12
+    sll x28, x28, x22
+    xor x28, x28, x21
+    srai x28, x21, -1411
+    addi x28, x19, -868
+    andi x28, x19, 1562
+    add x28, x28, x14
+    add x28, x28, x13
+    andi x28, x19, 638
+    xor x28, x28, x30
+    add x28, x28, x15
+    srli x28, x22, -685
+    ori x28, x26, 1791
+    and x28, x28, x25
+    jalr x28, x24, 1271
+    and x28, x28, x21
+    andi x28, x14, -1943
+    srai x28, x22, -166
+    mul x28, x28, x18
+    and x28, x28, x24
+    sra x28, x28, x20
+    sra x28, x28, x11
+    add x28, x28, x25
+    addi x28, x10, 418
+    xori x28, x27, 751
+    or x28, x28, x30
+    andi x28, x17, 1726
+    addi x28, x14, -523
+    mul x28, x28, x22
+    or x28, x28, x16
+    addi x28, x10, 1901
+    addi x28, x20, 222
+    srli x28, x24, -613
+    srli x28, x25, -1651
+    sll x28, x28, x10
+    and x28, x28, x16
+    andi x28, x10, 1761
+    add x28, x28, x12
+    sra x28, x28, x27
+    addi x28, x10, 1164
+    srl x28, x28, x29
+    lw x28, 92(x3)
+    add x28, x28, x24
+    mul x28, x28, x29
+    add x28, x28, x26
+    slli x28, x25, 1315
+    mul x28, x28, x14
+    or x28, x28, x12
+    andi x28, x15, -1293
+    slli x28, x21, -923
+    andi x28, x10, 1567
+    xori x28, x29, -1119
+    srai x28, x22, -820
+    or x28, x28, x31
+    xor x28, x28, x16
+    addi x28, x10, -436
+    sub x28, x28, x12
+    sw x28, 32(x3)
+    sub x28, x28, x30
+    srai x28, x21, 1780
+    ori x28, x20, 1783
+    mul x28, x28, x25
+    addi x28, x13, 1056
+    andi x28, x22, -39
+    sub x28, x28, x30
+    add x28, x28, x26
+    mul x28, x28, x19
+    add x28, x28, x13
+    andi x28, x25, 1744
+    mul x28, x28, x21
+    sra x28, x28, x20
+    xor x28, x28, x17
+    andi x28, x16, -1929
+    srli x28, x17, -196
+    add x28, x28, x11
+    addi x28, x17, 311
+    slt x28, x28, x16
+    mul x28, x28, x18
+    srli x28, x11, 1774
+    and x28, x28, x11
+    add x28, x28, x12
+    sll x28, x28, x16
+    addi x28, x21, -932
+    ori x28, x27, -284
+    srli x28, x31, -740
+    srai x28, x19, 117
+    srai x28, x12, -98
+    andi x28, x30, 1952
+    sub x28, x28, x31
+    or x28, x28, x13
+    ori x28, x14, 1632
+    srl x28, x28, x25
+    xor x28, x28, x14
+    mul x28, x28, x30
+    addi x28, x12, -636
+    addi x28, x19, 822
+    sra x28, x28, x11
+    mul x28, x28, x14
+    add x28, x28, x27
+    ori x28, x20, -1937
+    xor x28, x28, x15
+    addi x28, x19, -1073
+    add x28, x28, x15
+    sll x28, x28, x19
+    srai x28, x16, -841
+    slli x28, x26, 1650
+    sub x28, x28, x31
+    andi x28, x26, 51
+    mul x28, x28, x15
+    sub x28, x28, x12
+    sub x28, x28, x24
+    and x28, x28, x27
+    add x28, x28, x21
+    srli x28, x22, 261
+    sub x28, x28, x26
+    mul x28, x28, x20
+    or x28, x28, x17
+    mul x28, x28, x12
+    sltiu x28, x21, -1487
+    srl x28, x28, x22
+    mul x28, x28, x17
+    sra x28, x28, x27
+    slli x28, x13, 1742
+    add x28, x28, x22
+    add x28, x28, x24
+    mul x28, x28, x24
+    slli x28, x12, -264
+    srl x28, x28, x23
+    ori x28, x18, 174
+    addi x28, x20, -1216
+    xori x28, x11, -1614
+    ori x28, x19, -594
+    srai x28, x24, 255
+    and x28, x28, x22
+    srli x28, x16, 144
+    sll x28, x28, x18
     nop
