@@ -5,7 +5,6 @@ A web-based application for visualizing RISC-V processor register states and dat
 
 ![image](https://github.com/user-attachments/assets/b0cdf5fd-1072-403c-a16a-2a970749e274)
 
-
 ## Features
 
 - **RISC-V Assembly Editor**: Write and edit RISC-V assembly code with syntax highlighting
@@ -21,8 +20,6 @@ A web-based application for visualizing RISC-V processor register states and dat
 - **Cache Simulation**: Cache with hit/miss statistics
 - **Interactive Simulation**: Pause, step, and reset simulation at any point
 
-
-
 ## Tech Stack
 
 - React: User interface construction
@@ -32,46 +29,49 @@ A web-based application for visualizing RISC-V processor register states and dat
 - Zustand: State management
 
 ## Architecture
+
 The project consists of the following main modules:
 
 - **Assembly Editor**: Provides a Monaco-based editor for writing RISC-V assembly code
+
   - Syntax highlighting and error detection
   - Support for loading example programs
   - Real-time assembly to machine code conversion
-
 - **Assembler**: Converts RISC-V assembly code to machine code
+
   - Supports R, I, S, B, U, J type instructions and pseudo-instructions
   - support for RV32M extension (mul, mulh, mulhu, mulhsu, div, divu, rem, remu)
   - Handles labels, data segments, and immediate values
   - Supports various directives (.text, .data, .word, .byte, .string, .space, etc.)
   - Provides detailed error messages with line numbers
-
 - **Circuit Simulator**: Visualizes and simulates the RISC-V processor datapath
+
   - Supports both basic and pipelined datapath models
   - Interactive component connections using ReactFlow
   - Real-time signal propagation between components
-  - Pipeline hazard detection 
+  - Pipeline hazard detection
   - Branch hazard and control hazard handling
-
 - **Register File**: Displays all 32 RISC-V registers with real-time updates
+
   - Shows register values in different formats (hex, decimal, binary)
   - Highlights register changes during execution
-
 - **Memory System**: Manages instruction and data memory
+
   - Displays memory contents in a structured view
   - Supports data segment initialization from assembly
   - Handles system calls for I/O operations via memory-mapped registers
   - cache with LRU replacement policy
 
-
 ## Quick Start
 
 1. Clone the project and install dependencies:
+
 ```bash
 npm install
 ```
 
 2. Start the development server:
+
 ```bash
 npm run dev
 ```
@@ -92,10 +92,10 @@ public/
 └── test-programs/   # Example RISC-V programs
 ```
 
-
 ### Testing
 
 Run tests using:
+
 ```bash
 npm test
 ```
@@ -134,6 +134,7 @@ The pipeline implementation includes:
 ## Supported RISC-V Instructions
 
 ### Base Integer Instructions (RV32I)
+
 - **R-Type**: add, sub, sll, slt, sltu, xor, srl, sra, or, and
 - **I-Type**: addi, slti, sltiu, xori, ori, andi, slli, srli, srai, lb, lh, lw, lbu, lhu, jalr
 - **S-Type**: sb, sh, sw
@@ -142,14 +143,17 @@ The pipeline implementation includes:
 - **J-Type**: jal
 
 ### Integer Multiplication and Division (RV32M)
+
 - **Multiplication**: mul, mulh, mulhu, mulhsu
 - **Division**: div, divu, rem, remu
 
 ### System Instructions
+
 - ecall (system calls for I/O and program termination)
 - ebreak (breakpoint instruction)
 
 ### Pseudo-Instructions
+
 - li, mv, j, jr, ret, call, tail, nop, and many others
 
 ## System Calls

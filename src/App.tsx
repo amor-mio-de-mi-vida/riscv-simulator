@@ -13,6 +13,7 @@ import { PerformanceView } from './components/PerformanceView';
 import { ChevronDown, ChevronRight, Code, Database, Cpu, Play, Pause, RotateCcw, StepForward, StepBack, Layers, BarChart } from 'lucide-react';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useCircuitStore } from './store/circuitStore';
+import { PerformanceTest } from './components/PerformanceTest';
 
 interface CollapsibleSectionProps {
   title: string;
@@ -80,8 +81,6 @@ function App() {
               <CacheView />
             </div>
           </div>
-
-
 
           <div style={{ display: activeTab === 'datapath' ? 'flex' : 'none' }} className="h-full">
             <ResizablePanels
@@ -248,6 +247,10 @@ function App() {
       {showPerformance && (
         <PerformanceView onClose={() => setShowPerformance(false)} />
       )}
+
+      <div className="flex-1 overflow-auto">
+        <PerformanceTest />
+      </div>
     </div>
   );
 }

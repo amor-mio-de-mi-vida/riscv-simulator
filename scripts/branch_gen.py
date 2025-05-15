@@ -1,115 +1,122 @@
-# branch_gen.py
-import sys
-from datetime import datetime
+#!/usr/bin/env python3
 import os
+import random
+from datetime import datetime
 
-total_instructions = 2000
-
-# 初始化数据
-init = [
-    # 基本计数器
-    "addi x1, x0, 0",      # 主循环计数器
-    f"addi x2, x0, {total_instructions}",  # 循环上限
-    # 测试数据
-    "addi x3, x0, 10",     # 正数测试值
-    "addi x4, x0, -10",    # 负数测试值
-    "addi x5, x0, 0",      # 分支计数器
-    "addi x6, x0, 0",      # 条件分支计数器
-    "addi x7, x0, 0",      # 无符号比较计数器
-    "addi x8, x0, 0",      # 有符号比较计数器
-    # 测试用的特殊值
-    "lui x9, 0x7FFFF",     # 最大正数的高位
-    "addi x9, x9, 0xFFF",  # 最大正数的低位
-    "lui x10, 0x80000",    # 最小负数的高位
-    "addi x11, x0, -1",    # -1
-    "addi x12, x0, 0"      # 0
-]
-
-# 测试场景1：基本分支指令
-basic_branch = [
-    "addi x1, x1, 1",      # 增加计数器
-    "beq  x1, x2, end_branch",  # 检查是否达到上限
-    "bne  x1, x0, loop_branch"  # 继续循环
-]
-
-# 测试场景2：条件分支
-cond_branch = [
-    "addi x6, x6, 1",      # 增加条件分支计数器
-    "blt  x6, x3, cond_continue",  # 如果小于10继续
-    "bge  x6, x3, cond_reset",     # 如果大于等于10重置
-    "cond_continue:",
-    "addi x5, x5, 1",      # 增加分支计数器
-    "jal  x0, loop_branch",    # 跳回主循环
-    "cond_reset:",
-    "addi x6, x0, 0",      # 重置条件分支计数器
-    "jal  x0, loop_branch"     # 跳回主循环
-]
-
-# 测试场景3：无符号比较
-unsigned_branch = [
-    "addi x7, x7, 1",      # 增加无符号比较计数器
-    "bltu x7, x3, unsigned_continue",  # 无符号小于10继续
-    "bgeu x7, x3, unsigned_reset",     # 无符号大于等于10重置
-    "unsigned_continue:",
-    "addi x5, x5, 1",      # 增加分支计数器
-    "jal  x0, loop_branch",    # 跳回主循环
-    "unsigned_reset:",
-    "addi x7, x0, 0",      # 重置无符号比较计数器
-    "jal  x0, loop_branch"     # 跳回主循环
-]
-
-# 测试场景4：有符号比较
-signed_branch = [
-    "addi x8, x8, 1",      # 增加有符号比较计数器
-    "blt  x8, x4, signed_continue",  # 有符号小于-10继续
-    "bge  x8, x4, signed_reset",     # 有符号大于等于-10重置
-    "signed_continue:",
-    "addi x5, x5, 1",      # 增加分支计数器
-    "jal  x0, loop_branch",    # 跳回主循环
-    "signed_reset:",
-    "addi x8, x0, 0",      # 重置有符号比较计数器
-    "jal  x0, loop_branch"     # 跳回主循环
-]
-
-# 计算循环次数
-loop_count = (total_instructions - len(init) - 1) // (len(basic_branch) + len(cond_branch) + len(unsigned_branch) + len(signed_branch))
-
-# 生成输出文件名，包含时间戳
-output_file = os.path.join("public", "test-programs", f"branch_test.s")
-
-# 确保输出目录存在
-os.makedirs(os.path.dirname(output_file), exist_ok=True)
-
-# 生成汇编代码
-with open(output_file, 'w') as f:
-    # 写入文件头注释
-    f.write("# Generated branch test program\n")
-    f.write(f"# Generated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-    f.write(f"# Total instructions: {total_instructions}\n")
-    f.write(f"# Loop count: {loop_count}\n\n")
+def generate_random_branch_instruction(registers, available_labels, current_label_index):
+    """生成随机的分支指令，只能跳转到已定义的标签"""
+    # 只使用当前标签之前的标签
+    valid_labels = available_labels[:current_label_index]
+    if not valid_labels:  # 如果是第一个标签，只能跳转到end_program
+        valid_labels = ["end_program"]
     
-    # 写入初始化代码
-    f.write('\n'.join(init))
-    f.write('\n\n')
+    branch_instructions = [
+        # 条件分支指令
+        lambda: f"beq x{random.choice(registers)}, x{random.choice(registers)}, {random.choice(valid_labels)}",
+        lambda: f"bne x{random.choice(registers)}, x{random.choice(registers)}, {random.choice(valid_labels)}",
+        lambda: f"blt x{random.choice(registers)}, x{random.choice(registers)}, {random.choice(valid_labels)}",
+        lambda: f"bge x{random.choice(registers)}, x{random.choice(registers)}, {random.choice(valid_labels)}",
+        # 无条件跳转
+        lambda: f"j {random.choice(valid_labels)}",
+        # 函数调用
+        lambda: f"jal x{random.choice(registers)}, {random.choice(valid_labels)}",
+        lambda: f"jalr x{random.choice(registers)}, x{random.choice(registers)}, {random.randint(-2048, 2047)}"
+    ]
     
-    # 写入主循环
-    f.write("loop_branch:\n")
-    for _ in range(loop_count):
-        # 基本分支测试
-        for line in basic_branch:
-            f.write(f"    {line}\n")
-        # 条件分支测试
-        for line in cond_branch:
-            f.write(f"    {line}\n")
-        # 无符号比较测试
-        for line in unsigned_branch:
-            f.write(f"    {line}\n")
-        # 有符号比较测试
-        for line in signed_branch:
-            f.write(f"    {line}\n")
-    
-    # 写入结束标签
-    f.write("end_branch:\n")
-    f.write("    nop\n")
+    return random.choice(branch_instructions)()
 
-print(f"Generated branch test code has been written to {output_file}")
+def generate_random_compute_instruction(registers):
+    """生成随机的计算指令"""
+    compute_instructions = [
+        lambda: f"add x{random.choice(registers)}, x{random.choice(registers)}, x{random.choice(registers)}",
+        lambda: f"sub x{random.choice(registers)}, x{random.choice(registers)}, x{random.choice(registers)}",
+        lambda: f"mul x{random.choice(registers)}, x{random.choice(registers)}, x{random.choice(registers)}",
+        lambda: f"div x{random.choice(registers)}, x{random.choice(registers)}, x{random.choice(registers)}",
+        lambda: f"rem x{random.choice(registers)}, x{random.choice(registers)}, x{random.choice(registers)}",
+        lambda: f"addi x{random.choice(registers)}, x{random.choice(registers)}, {random.randint(-2048, 2047)}",
+        lambda: f"li x{random.choice(registers)}, {random.randint(-2048, 2047)}"
+    ]
+    
+    return random.choice(compute_instructions)()
+
+def generate_branch_test(total_instructions=1000):
+    # 可用的寄存器（避免使用x0）
+    registers = list(range(1, 32))
+    
+    # 预先生成所有标签
+    num_labels = total_instructions // 10  # 每10条指令一个标签
+    labels = [f"label_{i}" for i in range(num_labels)]
+    labels.append("end_program")  # 添加结束标签
+    
+    # 初始化代码
+    asm_code = [".text"]
+    asm_code.append("# 初始化寄存器")
+    asm_code.append("li x1, 0          # 计数器")
+    asm_code.append(f"li x2, {total_instructions}  # 最大指令数")
+    asm_code.append("li x3, 1          # 步长")
+    
+    # 生成随机指令
+    current_instruction = 0
+    current_label_index = 0
+    
+    while current_instruction < total_instructions:
+        # 每10条指令添加一个标签
+        if current_instruction % 10 == 0 and current_label_index < len(labels) - 1:
+            asm_code.append(f"\n{labels[current_label_index]}:")
+            current_label_index += 1
+        
+        # 随机决定是生成分支指令还是计算指令
+        if random.random() < 0.4:  # 40%的概率生成分支指令
+            instruction = generate_random_branch_instruction(registers, labels, current_label_index)
+        else:
+            instruction = generate_random_compute_instruction(registers)
+        
+        asm_code.append(f"    {instruction}")
+        current_instruction += 1
+        
+        # 每100条指令添加一个循环检查
+        if current_instruction % 100 == 0:
+            asm_code.append("    addi x1, x1, 1")
+            asm_code.append("    beq x1, x2, end_program")
+    
+    # 添加结束标签和程序结束指令
+    asm_code.append("\nend_program:")
+    asm_code.append("    ebreak")
+    
+    return "\n".join(asm_code)
+
+def save_to_file(asm_code, filename):
+    # 确保目录存在
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    
+    # 计算指令数量
+    instruction_count = len([line for line in asm_code.splitlines() if line.strip()])
+    
+    # 添加生成时间和注释
+    header = (
+        f"# Generated random branch test program\n"
+        f"# Generated at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+        f"# This program contains randomized control hazards and branch instructions\n"
+        f"# Total instructions: {instruction_count}\n\n"
+    )
+    
+    # 写入文件
+    with open(filename, 'w') as f:
+        f.write(header + asm_code)
+    
+    print(f"Generated branch test code has been written to {filename}")
+
+if __name__ == "__main__":
+    import argparse
+    
+    parser = argparse.ArgumentParser(description='Generate random branch test program')
+    parser.add_argument('--instructions', type=int, default=1000,
+                      help='Number of instructions to generate (default: 1000)')
+    parser.add_argument('--output', type=str, default='branch_test.s',
+                      help='Output filename (default: branch_test.s)')
+    
+    args = parser.parse_args()
+    
+    asm_code = generate_branch_test(args.instructions)
+    output_file = os.path.join("public", "test-programs", args.output)
+    save_to_file(asm_code, output_file)
