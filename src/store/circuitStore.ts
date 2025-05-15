@@ -803,10 +803,6 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
     stats.instructionsExecuted++;
     stats.totalInstructions++;
 
-    // Update CPI and IPC
-    stats.cpi = stats.cycleCount / (stats.instructionsExecuted || 1);
-    stats.ipc = stats.instructionsExecuted / (stats.cycleCount || 1);
-
     // Determine instruction type and update counts
     const opcode = instruction.split(' ')[0];
 
@@ -825,6 +821,7 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
         if (stats.enablePipelineStats) {
           stats.memoryStalls++;
           stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+          stats.cycleCount += 1; // 增加访存冒险导致的停顿周期
         }
       }
     }
@@ -836,6 +833,7 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
       if (stats.enablePipelineStats) {
         stats.memoryStalls++;
         stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+        stats.cycleCount += 1; // 增加访存冒险导致的停顿周期
       }
     }
     // B-type instructions (beq, bne, blt, bge, bltu, bgeu)
@@ -848,6 +846,7 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
       if (stats.enablePipelineStats) {
         stats.controlHazardStalls++;
         stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+        stats.cycleCount += 1; // 增加分支冒险导致的停顿周期
       }
 
       // Update branch statistics
@@ -878,6 +877,7 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
       if (stats.enablePipelineStats) {
         stats.controlHazardStalls++;
         stats.totalStalls = stats.dataHazardStalls + stats.controlHazardStalls + stats.memoryStalls;
+        stats.cycleCount += 1; // 增加分支冒险导致的停顿周期
       }
 
       // JAL is always taken, so update branch statistics
@@ -890,6 +890,10 @@ export const useCircuitStore = create<CircuitState>()((set, get) => ({
         stats.branchMispredictionRate = stats.branchMispredictionCount / totalBranches;
       }
     }
+
+    // Update CPI and IPC
+    stats.cpi = stats.cycleCount / (stats.instructionsExecuted || 1);
+    stats.ipc = stats.instructionsExecuted / (stats.cycleCount || 1);
 
     return { performanceStats: stats };
   }),
